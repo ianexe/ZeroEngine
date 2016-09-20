@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{894bee0c-e976-4437-a95a-a35a075c7565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools">
+      <UniqueIdentifier>{c81cdb0f-e3f5-4511-8a2c-9626a5513762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Modules">
+      <UniqueIdentifier>{82e7153d-26eb-4f80-838f-918a2f91d25a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Modules\Game">
+      <UniqueIdentifier>{98962ff7-7195-4992-a0bb-7da866dca3fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Helpers">
+      <UniqueIdentifier>{41002f3d-5737-4d41-bf6a-5181cec26923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers">
+      <UniqueIdentifier>{0ec98d2f-9ce1-43ed-bf05-998231f63c14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{72e84def-dc9d-4495-91ad-fb2e5ff8c052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Imgui">
+      <UniqueIdentifier>{a5c31ac3-e200-4a72-b8a8-417e55924a3f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Timer.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCamera3D.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInput.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePhysics3D.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRenderer3D.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWindow.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneIntro.h">
+      <Filter>Sources\Modules\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Sources\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysBody3D.h">
+      <Filter>Sources\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>Sources\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="glmath.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Imgui\imconfig.h">
+      <Filter>Resources\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Imgui\imgui.h">
+      <Filter>Resources\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Imgui\imgui_impl_sdl_gl3.h">
+      <Filter>Resources\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Imgui\imgui_internal.h">
+      <Filter>Resources\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Imgui\stb_rect_pack.h">
+      <Filter>Resources\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Imgui\stb_textedit.h">
+      <Filter>Resources\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Imgui\stb_truetype.h">
+      <Filter>Resources\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEditor.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="log.cpp">
+      <Filter>Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCamera3D.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePhysics3D.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleRenderer3D.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneIntro.cpp">
+      <Filter>Sources\Modules\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Sources\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysBody3D.cpp">
+      <Filter>Sources\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitive.cpp">
+      <Filter>Sources\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="glmath.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Imgui\imgui.cpp">
+      <Filter>Resources\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Imgui\imgui_demo.cpp">
+      <Filter>Resources\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Imgui\imgui_draw.cpp">
+      <Filter>Resources\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Imgui\imgui_impl_sdl_gl3.cpp">
+      <Filter>Resources\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEditor.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
