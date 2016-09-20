@@ -13,5 +13,6 @@ public:
 	bool CleanUp();
 
 public:
-
+	bool demo = false;
+	bool about = false;
 };
