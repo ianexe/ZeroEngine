@@ -140,23 +140,29 @@ update_status ModuleEditor::Update(float dt)
 
 		ImGui::EndMainMenuBar();
 	}
+
+	//Show Demo Window
 	if (demo)
 		ImGui::ShowTestWindow();
 
+	//Show About Window
 	if (about)
-	{
-		ImGui::Begin("About Zero Engine", &about, ImGuiWindowFlags_AlwaysAutoResize);
-		ImGui::Text("This is an engine created for learning purposes.");
-		ImGui::Text("By Ian Trueba Lopez.");
-		ImGui::Separator();
-		ImGui::Text("Libraries used in this project:");
-		ImGui::BulletText("SDL");
-		ImGui::BulletText("Bullet");
-		ImGui::BulletText("MatGeoLib");
-		ImGui::BulletText("ImGui");
-		ImGui::End();
-	}
+		ShowAbout();
 
 
 	return UPDATE_CONTINUE;
+}
+
+void ModuleEditor::ShowAbout()
+{
+	ImGui::Begin("About Zero Engine", &about, ImGuiWindowFlags_AlwaysAutoResize);
+	ImGui::Text("This is an engine created for learning purposes.");
+	ImGui::Text("By Ian Trueba Lopez.");
+	ImGui::Separator();
+	ImGui::Text("Libraries used in this project:");
+	ImGui::BulletText("SDL");
+	ImGui::BulletText("Bullet");
+	ImGui::BulletText("MatGeoLib");
+	ImGui::BulletText("ImGui");
+	ImGui::End();
 }

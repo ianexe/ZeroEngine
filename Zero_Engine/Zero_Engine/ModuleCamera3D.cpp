@@ -44,7 +44,7 @@ update_status ModuleCamera3D::Update(float dt)
 {
 	// Debug camera mode: Disabled for the final game (but better keep the code)
 
-	/*vec3 newPos(0,0,0);
+	vec3 newPos(0,0,0);
 	float speed = 3.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 	speed = 8.0f * dt;
@@ -100,7 +100,7 @@ update_status ModuleCamera3D::Update(float dt)
 	}
 
 	// Recalculate matrix -------------
-	CalculateViewMatrix();*/
+	CalculateViewMatrix();
 
 	return UPDATE_CONTINUE;
 }
