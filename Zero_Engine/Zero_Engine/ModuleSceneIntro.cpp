@@ -4,12 +4,14 @@
 #include "Primitive.h"
 #include "PhysBody3D.h"
 
+#include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
+#pragma comment (lib, "Glew/libx86/glew32.lib")
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -23,6 +25,51 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
+
+	my_id = 0;
+
+	static const GLfloat g_vertex_buffer_data[] = {
+		-1.0f,-1.0f,-1.0f, // triangle 1 : begin
+		-1.0f,-1.0f, 1.0f,
+		-1.0f, 1.0f, 1.0f, // triangle 1 : end
+		1.0f, 1.0f,-1.0f, // triangle 2 : begin
+		-1.0f,-1.0f,-1.0f,
+		-1.0f, 1.0f,-1.0f, // triangle 2 : end
+		1.0f,-1.0f, 1.0f,
+		-1.0f,-1.0f,-1.0f,
+		1.0f,-1.0f,-1.0f,
+		1.0f, 1.0f,-1.0f,
+		1.0f,-1.0f,-1.0f,
+		-1.0f,-1.0f,-1.0f,
+		-1.0f,-1.0f,-1.0f,
+		-1.0f, 1.0f, 1.0f,
+		-1.0f, 1.0f,-1.0f,
+		1.0f,-1.0f, 1.0f,
+		-1.0f,-1.0f, 1.0f,
+		-1.0f,-1.0f,-1.0f,
+		-1.0f, 1.0f, 1.0f,
+		-1.0f,-1.0f, 1.0f,
+		1.0f,-1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,
+		1.0f,-1.0f,-1.0f,
+		1.0f, 1.0f,-1.0f,
+		1.0f,-1.0f,-1.0f,
+		1.0f, 1.0f, 1.0f,
+		1.0f,-1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f,-1.0f,
+		-1.0f, 1.0f,-1.0f,
+		1.0f, 1.0f, 1.0f,
+		-1.0f, 1.0f,-1.0f,
+		-1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,
+		-1.0f, 1.0f, 1.0f,
+		1.0f,-1.0f, 1.0f
+	};
+
+	glGenBuffers(1, (GLuint*) &(my_id));
+	glBindBuffer(GL_ARRAY_BUFFER, my_id);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*36 * 3, g_vertex_buffer_data, GL_STATIC_DRAW);
 
 	return ret;
 }
@@ -54,6 +101,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	//------------------------------
 	*/
 
+	/*
 	//Cube
 	//Face1
 	glBegin(GL_TRIANGLES);
@@ -134,6 +182,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	glEnd();
 
 	glLineWidth(1.0f);
+	*/
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, my_id);
+	glVertexPointer(3, GL_FLOAT, 0, NULL);
+	// ... draw other buffers
+	glDrawArrays(GL_TRIANGLES, 0, 36 * 3);
+	glDisableClientState(GL_VERTEX_ARRAY);
 
 	return UPDATE_CONTINUE;
 }

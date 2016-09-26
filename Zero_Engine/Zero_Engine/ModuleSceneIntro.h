@@ -18,5 +18,5 @@ public:
 
 
 public:
-
+	uint my_id;
 };
