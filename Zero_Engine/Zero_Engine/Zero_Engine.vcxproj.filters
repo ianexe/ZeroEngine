@@ -315,6 +315,9 @@
     <ClInclude Include="MathGeoLib\Time\Clock.h">
       <Filter>Resources\MathGeoLib\Time</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleFBXLoader.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="log.cpp">
@@ -487,6 +490,9 @@
     </ClCompile>
     <ClCompile Include="MathGeoLib\Time\Clock.cpp">
       <Filter>Resources\MathGeoLib\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFBXLoader.cpp">
+      <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
