@@ -318,6 +318,7 @@
     <ClInclude Include="ModuleFBXLoader.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModulePhysX.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="log.cpp">
@@ -494,6 +495,7 @@
     <ClCompile Include="ModuleFBXLoader.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModulePhysX.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MathGeoLib\Math\float2.inl">
