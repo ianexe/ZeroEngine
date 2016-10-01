@@ -1,6 +1,8 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModulePhysX.h"
+#include "PhysXBody.h"
+#include "Primitive.h"
 
 #pragma comment (lib, "PhysX/Lib/vc14win32/PhysX3DEBUG_x86.lib")
 #pragma comment (lib, "PhysX/Lib/vc14win32/PhysX3CommonDEBUG_x86.lib")
@@ -76,6 +78,8 @@ update_status ModulePhysX::PreUpdate(float dt)
 
 update_status ModulePhysX::Update(float dt)
 {
+	gScene->simulate(1.0f / 60.0f);
+	gScene->fetchResults(true);
 	return UPDATE_CONTINUE;
 }
 
@@ -91,7 +95,45 @@ bool ModulePhysX::CleanUp()
 	return true;
 }
 
-PxMaterial* ModulePhysX::CreateMaterial(float a, float b, float c)
+PhysXBody* ModulePhysX::AddBody(const Cube& cube, float mass, bool isSensor)
 {
-	return gPhysics->createMaterial(a, b, c);
+	PhysXBody* pbody = nullptr;
+	PxRigidDynamic* body = gPhysics->createRigidDynamic(PxTransform(0,0,0));
+	//PxQuat q;
+	//q.createIdentity();
+	//PxTransform pose(q);
+	PxShape* aBoxShape = body->createShape(PxBoxGeometry(1 / 2, 1 / 2, 1 / 2), *gMaterial);
+	//aBoxShape->setLocalPose(pose);
+	PxRigidBodyExt::updateMassAndInertia(*body, mass);
+	gScene->addActor(*body);
+	pbody = new PhysXBody(body);
+
+	/*
+	btCollisionShape* colShape = new btSphereShape(sphere.radius);
+	shapes.push_back(colShape);
+
+	btTransform startTransform;
+	startTransform.setFromOpenGLMatrix(&sphere.transform);
+
+	btVector3 localInertia(0, 0, 0);
+	if (mass != 0.f)
+		colShape->calculateLocalInertia(mass, localInertia);
+
+	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
+	motions.push_back(myMotionState);
+	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, colShape, localInertia);
+
+	btRigidBody* body = new btRigidBody(rbInfo);
+	PhysBody3D* pbody = new PhysBody3D(body);
+
+	if (isSensor)
+		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+
+	body->setUserPointer(pbody);
+	world->addRigidBody(body);
+	bodies.push_back(pbody);
+
+	return pbody;
+	*/
+	return pbody;
 }

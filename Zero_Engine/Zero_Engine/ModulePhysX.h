@@ -2,8 +2,10 @@
 #include "Module.h"
 #include "Globals.h"
 #include "PhysX\Include\PxPhysicsAPI.h"
+#include "Primitive.h"
 
 using namespace physx;
+struct PhysXBody;
 
 class ModulePhysX : public Module
 {
@@ -18,7 +20,7 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	PxMaterial* CreateMaterial(float a, float b, float c);
+	PhysXBody* AddBody(const Cube& cube, float mass = 1.0f, bool isSensor = false);
 
 public:
 	PxDefaultErrorCallback	gErrorCallback;
