@@ -44,11 +44,15 @@ bool ModuleFBXLoader::CleanUp()
 	return ret;
 }
 
-bool ModuleFBXLoader::Load(const char* path)
+vector<Mesh> ModuleFBXLoader::Load(const char* path)
 {
-	bool ret = true;
+	vector<Mesh> ret;
 
-	const aiScene* scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality);
+	//NOTE: Loading buff from FS, this may be changed with XML
+	char* buff;
+	uint size = App->fs->Load(path, &buff);
+
+	const aiScene* scene = aiImportFileFromMemory(buff, size, aiProcessPreset_TargetRealtime_MaxQuality, NULL);
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
@@ -85,9 +89,10 @@ bool ModuleFBXLoader::Load(const char* path)
 				}
 				// faces to buffer
 				glGenBuffers(1, (GLuint*)&(m.id_indices));
-				glBindBuffer(GL_ARRAY_BUFFER, m.id_indices);
-				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * m.num_indices, m.indices, GL_STATIC_DRAW);
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
+				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * m.num_indices, m.indices, GL_STATIC_DRAW);
 			}
+			ret.push_back(m);
 		}
 		aiReleaseImport(scene);
 	}
@@ -95,9 +100,9 @@ bool ModuleFBXLoader::Load(const char* path)
 	else
 	{
 		LOG("Error loading scene %s", path);
-		ret = false;
 	}
-		
+
+	delete[] buff;
 
 	return ret;
 }

@@ -12,6 +12,8 @@
 #include "ModuleCamera3D.h"
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
+#include "ModuleFileSystem.h"
+#include "ModuleFBXLoader.h"
 
 using namespace std;
 
@@ -26,6 +28,8 @@ public:
 	ModuleCamera3D* camera;
 	ModulePhysics3D* physics;
 	ModuleEditor* editor;
+	ModuleFileSystem* fs;
+	ModuleFBXLoader* fbx;
 
 private:
 

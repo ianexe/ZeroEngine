@@ -10,6 +10,8 @@ Application::Application()
 	camera = new ModuleCamera3D(this);
 	physics = new ModulePhysics3D(this);
 	editor = new ModuleEditor(this);
+	fs = new ModuleFileSystem(this);
+	fbx = new ModuleFBXLoader(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -20,6 +22,8 @@ Application::Application()
 	AddModule(camera);
 	AddModule(input);
 	AddModule(audio);
+	AddModule(fs);
+	AddModule(fbx);
 	AddModule(physics);
 
 	// Scenes

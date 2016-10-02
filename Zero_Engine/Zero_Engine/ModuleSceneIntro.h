@@ -3,7 +3,7 @@
 #include "Globals.h"
 #include "Primitive.h"
 
-
+struct Mesh;
 
 class ModuleSceneIntro : public Module
 {
@@ -19,4 +19,6 @@ public:
 
 public:
 	uint my_id;
+
+	vector<Mesh> warrior;
 };

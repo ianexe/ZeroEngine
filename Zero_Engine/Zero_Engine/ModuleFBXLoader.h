@@ -23,7 +23,7 @@ public:
 	bool Init();
 	bool CleanUp();
 
-	bool Load(const char* path);
+	vector<Mesh> Load(const char* path);
 
 public:
 

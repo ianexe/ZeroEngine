@@ -3,6 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
+#include "ModuleFBXLoader.h"
 
 #include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -26,6 +27,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
+	/*
 	my_id = 0;
 
 	static const GLfloat g_vertex_buffer_data[] = {
@@ -70,6 +72,9 @@ bool ModuleSceneIntro::Start()
 	glGenBuffers(1, (GLuint*) &(my_id));
 	glBindBuffer(GL_ARRAY_BUFFER, my_id);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*36 * 3, g_vertex_buffer_data, GL_STATIC_DRAW);
+	*/
+
+	warrior = App->fbx->Load("warrior.fbx");
 
 	return ret;
 }
@@ -183,13 +188,17 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	glLineWidth(1.0f);
 	*/
-
+	/*
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, my_id);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
 	// ... draw other buffers
 	glDrawArrays(GL_TRIANGLES, 0, 36 * 3);
 	glDisableClientState(GL_VERTEX_ARRAY);
+	*/
+
+	for (vector<Mesh>::iterator item = warrior.begin(); item != warrior.end(); ++item)
+		App->renderer3D->RenderMesh((*item));
 
 	return UPDATE_CONTINUE;
 }

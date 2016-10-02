@@ -47,6 +47,19 @@ public:
 		return true;
 	}
 
+	/*
+	NOTE: Fix this with XML
+	virtual bool Load()
+	{
+		return true;
+	}
+
+	virtual bool Save() const
+	{
+		return true;
+	}
+	*/
+
 	virtual void OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	{}
 };
