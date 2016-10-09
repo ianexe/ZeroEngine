@@ -13,7 +13,13 @@ struct Mesh
 	uint num_indices = 0;
 	uint* indices = nullptr;
 };
-	
+
+struct Texture
+{
+	uint id = 0;
+	int width = 0;
+	int height = 0;
+};
 
 class ModuleFBXLoader : public Module
 {
@@ -24,7 +30,8 @@ public:
 	bool Init();
 	bool CleanUp();
 
-	vector<Mesh> Load(const char* path);
+	vector<Mesh> LoadMesh(const char* path);
+	Texture LoadTexture(const char* path);
 
 public:
 

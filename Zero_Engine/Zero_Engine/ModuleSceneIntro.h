@@ -17,7 +17,10 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	void Render();
 
+	void DirectModeCube();
+	void InitCubeIndices();
 
 public:
 	uint my_id;

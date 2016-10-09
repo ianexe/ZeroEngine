@@ -11,9 +11,6 @@
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 #pragma comment (lib, "Glew/libx86/glew32.lib") 
 
-#include "Imgui\imgui.h"
-#include "Imgui\imgui_impl_sdl_gl3.h"
-
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -113,8 +110,6 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT, 20.0f);
 
-	ImGui_ImplSdlGL3_Init(App->window->window);
-
 	return ret;
 }
 
@@ -139,7 +134,8 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
-	ImGui::Render();
+	App->scene_intro->Render();
+	App->editor->Render();
 	SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;
 }
@@ -148,7 +144,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 bool ModuleRenderer3D::CleanUp()
 {
 	LOG("Destroying 3D Renderer");
-	ImGui_ImplSdlGL3_Shutdown();
 	SDL_GL_DeleteContext(context);
 
 	return true;

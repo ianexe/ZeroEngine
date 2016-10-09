@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleEditor.h"
 #include "Imgui\imgui.h"
+#include "Imgui\imgui_impl_sdl_gl3.h"
 
 ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
@@ -11,6 +12,9 @@ ModuleEditor::~ModuleEditor()
 
 bool ModuleEditor::Start()
 {
+	//Initializing ImGui on window
+	ImGui_ImplSdlGL3_Init(App->window->window);
+
 	//Color Test
 	//--------------------------------------------------
 
@@ -64,27 +68,6 @@ bool ModuleEditor::Start()
 	style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.26f, 0.59f, 0.98f, 0.35f);
 	style.Colors[ImGuiCol_ModalWindowDarkening] = ImVec4(0.20f, 0.20f, 0.20f, 0.35f);
 
-	/*
-	if (bStyleDark_)
-	{
-		for (int i = 0; i <= ImGuiCol_COUNT; i++)
-		{
-			ImVec4& col = style.Colors[i];
-			float H, S, V;
-			ImGui::ColorConvertRGBtoHSV(col.x, col.y, col.z, H, S, V);
-
-			if (S < 0.1f)
-			{
-				V = 1.0f - V;
-			}
-			ImGui::ColorConvertHSVtoRGB(H, S, V, col.x, col.y, col.z);
-			if (col.w < 1.00f)
-			{
-				col.w *= alpha_;
-			}
-		}
-	}
-	*/
 	//else
 	//{
 		for (int i = 0; i <= ImGuiCol_COUNT; i++)
@@ -108,6 +91,8 @@ bool ModuleEditor::Start()
 
 bool ModuleEditor::CleanUp()
 {
+	//Shutting down ImGui
+	ImGui_ImplSdlGL3_Shutdown();
 	return true;
 }
 
@@ -151,6 +136,12 @@ update_status ModuleEditor::Update(float dt)
 
 
 	return UPDATE_CONTINUE;
+}
+
+void ModuleEditor::Render()
+{
+	//Rendering ImGui
+	ImGui::Render();
 }
 
 void ModuleEditor::ShowAbout()

@@ -12,7 +12,13 @@
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
 #pragma comment (lib, "Glew/libx86/glew32.lib")
 
+#include "Devil\include\il.h"
+#include "Devil\include\ilu.h"
+#include "Devil\include\ilut.h"
 
+#pragma comment (lib, "Devil/libx86/DevIL.lib")
+#pragma comment (lib, "Devil/libx86/ILU.lib")
+#pragma comment (lib, "Devil/libx86/ILUT.lib")
 
 ModuleFBXLoader::ModuleFBXLoader(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -32,6 +38,13 @@ bool ModuleFBXLoader::Init()
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
 	aiAttachLogStream(&stream);
 
+	//Initializing DevIL
+	ilInit();
+	iluInit();
+	ilutInit();
+
+	ilutRenderer(ILUT_OPENGL);
+
 	return ret;
 }
 
@@ -44,7 +57,7 @@ bool ModuleFBXLoader::CleanUp()
 	return ret;
 }
 
-vector<Mesh> ModuleFBXLoader::Load(const char* path)
+vector<Mesh> ModuleFBXLoader::LoadMesh(const char* path)
 {
 	vector<Mesh> ret;
 
@@ -103,6 +116,27 @@ vector<Mesh> ModuleFBXLoader::Load(const char* path)
 	}
 
 	delete[] buff;
+
+	return ret;
+}
+
+Texture ModuleFBXLoader::LoadTexture(const char* path)
+{
+	Texture ret;
+
+	uint image;
+
+	ilGenImages(1, &image);
+	ilBindImage(image);
+
+	ilLoadImage(path);
+	iluFlipImage();
+	ret.width = ilGetInteger(IL_IMAGE_WIDTH);
+	ret.height = ilGetInteger(IL_IMAGE_HEIGHT);
+
+	ret.id = ilutGLBindTexImage();
+
+	ilDeleteImages(1, &image);
 
 	return ret;
 }
