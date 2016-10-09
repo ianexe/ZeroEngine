@@ -3,7 +3,9 @@
 // Version 2.04
 //
 // ----------------------------------------------------------------------------------------------------------------------------
-#pragma once
+#ifndef __GLMATH_H__
+#define __GLMATH_H__
+
 #define _USE_MATH_DEFINES
 
 #include <math.h>
@@ -520,3 +522,5 @@ mat4x4 translate(float x, float y, float z);
 mat4x4 transpose(const mat4x4 &Matrix);
 
 vec3 multiply(const vec3&u, const mat4x4& mat);
+
+#endif // __GLMATH_H__

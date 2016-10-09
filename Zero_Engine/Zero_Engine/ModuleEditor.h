@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __MODULE_EDITOR_H__
+#define __MODULE_EDITOR_H__
+
 #include "Module.h"
 #include "Globals.h"
 
@@ -18,3 +20,5 @@ public:
 	bool demo = false;
 	bool about = false;
 };
+
+#endif // __MODULE_EDITOR_H__

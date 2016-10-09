@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __MODULE_INPUT_H__
+#define __MODULE_INPUT_H__
+
 #include "Module.h"
 #include "Globals.h"
 #include <vector>
@@ -131,3 +133,5 @@ private:
 	int num_joysticks = 0;
 	vector<JOYSTICK*>	joysticks;
 };
+
+#endif // __MODULE_INPUT_H__

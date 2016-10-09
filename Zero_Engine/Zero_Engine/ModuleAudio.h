@@ -1,5 +1,5 @@
-#ifndef __ModuleAudio_H__
-#define __ModuleAudio_H__
+#ifndef __MODULE_AUDIO_H__
+#define __MODULE_AUDIO_H__
 
 #include "Module.h"
 #include "SDL_mixer\include\SDL_mixer.h"
@@ -31,4 +31,4 @@ private:
 	list<Mix_Chunk*>	fx;
 };
 
-#endif // __ModuleAudio_H__
+#endif // __MODULE_AUDIO_H__

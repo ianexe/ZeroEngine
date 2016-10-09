@@ -1,5 +1,5 @@
-#ifndef __PhysBody3D_H__
-#define __PhysBody3D_H__
+#ifndef __PHYSBODY3D_H__
+#define __PHYSBODY3D_H__
 
 #include <list>
 
@@ -39,4 +39,4 @@ public:
 	list<Module*> collision_listeners;
 };
 
-#endif // __PhysBody3D_H__
+#endif // __PHYSBODY3D_H__

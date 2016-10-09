@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __APPLICATION_H__
+#define __APPLICATION_H__
 
 #include <list>
 #include "Globals.h"
@@ -52,3 +53,5 @@ private:
 	void PrepareUpdate();
 	void FinishUpdate();
 };
+
+#endif // __APPLICATION_H__

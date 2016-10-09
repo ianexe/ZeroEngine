@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __MODULE_FBXLOADER_H__
+#define __MODULE_FBXLOADER_H__
 
 #include "Module.h"
 
@@ -28,4 +29,6 @@ public:
 public:
 
 };
+
+#endif // __MODULE_FBXLOADER_H__
 
