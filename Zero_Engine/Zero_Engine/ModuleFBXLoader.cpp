@@ -86,7 +86,7 @@ vector<Mesh> ModuleFBXLoader::LoadMesh(const char* path)
 			glBindBuffer(GL_ARRAY_BUFFER, m.id_vertices);
 			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * m.num_vertices, m.vertices, GL_STATIC_DRAW);
 
-			// copy faces
+			// copy indices
 			if (new_mesh->HasFaces())
 			{
 				m.num_indices = new_mesh->mNumFaces * 3;
@@ -100,11 +100,39 @@ vector<Mesh> ModuleFBXLoader::LoadMesh(const char* path)
 					else
 						memcpy(&m.indices[i * 3], new_mesh->mFaces[i].mIndices, 3 * sizeof(uint));
 				}
-				// faces to buffer
+				// indices to buffer
 				glGenBuffers(1, (GLuint*)&(m.id_indices));
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
 				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * m.num_indices, m.indices, GL_STATIC_DRAW);
 			}
+
+			/*
+			// copy normals
+			if (new_mesh->HasNormals())
+			{
+				m.num_normals = new_mesh->mNumVertices;
+				m.normals = new float[m.num_normals * 3]; // assume each face is a triangle
+				memcpy(m.normals, new_mesh->mNormals, sizeof(float) * m.num_normals * 3);
+				// normals to buffer
+				glGenBuffers(1, (GLuint*)&(m.id_normals));
+				glBindBuffer(GL_ARRAY_BUFFER, m.id_normals);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * m.num_normals, m.normals, GL_STATIC_DRAW);
+			}
+			
+
+			// copy UVs
+			if (new_mesh->HasTextureCoords(0))
+			{
+				m.num_uvs = new_mesh->mNumVertices;
+				m.uvs = new float[m.num_uvs * 2];
+				memcpy(m.uvs, new_mesh->mTextureCoords, sizeof(float) * m.num_uvs * 2);
+				// UVs to buffer
+				glGenBuffers(1, (GLuint*)&(m.id_uvs));
+				glBindBuffer(GL_ARRAY_BUFFER, m.id_uvs);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * m.num_uvs, m.uvs, GL_STATIC_DRAW);
+			}
+			*/
+
 			ret.push_back(m);
 		}
 		aiReleaseImport(scene);
