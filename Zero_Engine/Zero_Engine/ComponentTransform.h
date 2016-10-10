@@ -2,19 +2,26 @@
 #define __COMPONENT_TRANSFORM_H__
 
 #include "Component.h"
+#include "MathGeoLib\MathGeoLib.h"
 
 class ComponentTransform : public Component
 {
 public:
-	ComponentTransform();
+	ComponentTransform(GameObject* _go, float3 _pos, float3 _scale, Quat _rot);
 	~ComponentTransform();
 
-	void Enable();
 	void Update();
-	void Disable();
 
-public:
+	float3 SetPosition(float3 _pos);
+	float3 SetScale(float3 _scale);
+	Quat SetRotiation(Quat _rot);
 
+	float4x4 GetDrawingMatrix();
+
+private:
+	float3	pos;
+	float3	scale;
+	Quat	rotation;
 };
 
 #endif // __COMPONENT_TRANSFORM_H__

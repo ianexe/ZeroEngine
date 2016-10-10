@@ -2,16 +2,18 @@
 #define __COMPONENT_MATERIAL_H__
 
 #include "Component.h"
+#include "Texture.h"
 
 class ComponentMaterial : public Component
 {
 public:
-	ComponentMaterial();
+	ComponentMaterial(GameObject* _go, Texture* _tex);
 	~ComponentMaterial();
 
-	void Enable();
 	void Update();
-	void Disable();
+
+private:
+	Texture* tex;
 };
 
 #endif // __COMPONENT_MATERIAL_H__

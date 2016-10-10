@@ -2,16 +2,18 @@
 #define __COMPONENT_MESH_H__
 
 #include "Component.h"
+#include "Mesh.h"
 
 class ComponentMesh : public Component
 {
 public:
-	ComponentMesh();
+	ComponentMesh(GameObject* _go, Mesh* _mesh);
 	~ComponentMesh();
 
-	void Enable();
 	void Update();
-	void Disable();
+
+private:
+	Mesh* mesh;
 };
 
 #endif // __COMPONENT_MESH_H__

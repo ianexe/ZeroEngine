@@ -1,7 +1,9 @@
 #include "ComponentMaterial.h"
 
-ComponentMaterial::ComponentMaterial()
+ComponentMaterial::ComponentMaterial(GameObject* _go, Texture* _tex) : Component(_go)
 {
+	type = COMP_MATERIAL;
+	tex = _tex;
 }
 
 ComponentMaterial::~ComponentMaterial()
@@ -9,13 +11,5 @@ ComponentMaterial::~ComponentMaterial()
 }
 
 void ComponentMaterial::Update()
-{
-}
-
-void ComponentMaterial::Enable()
-{
-}
-
-void ComponentMaterial::Disable()
 {
 }
