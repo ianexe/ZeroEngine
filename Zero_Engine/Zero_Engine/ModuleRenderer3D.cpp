@@ -166,9 +166,25 @@ void ModuleRenderer3D::OnResize(int width, int height, float fovy)
 void ModuleRenderer3D::RenderMesh(Mesh mesh)
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
-	// ... draw other buffers
-	glDrawElements(GL_TRIANGLES, mesh.num_indices, GL_UNSIGNED_INT, (void*)0);
+
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_normals);
+	glNormalPointer(GL_FLOAT, 0, NULL);
+
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_uvs);
+	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, App->fbx->LoadTexture("Game/tex.jpg").id);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
+	glDrawElements(GL_TRIANGLES, mesh.num_indices, GL_UNSIGNED_INT, NULL);
+
 	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisable(GL_TEXTURE_2D);
 }

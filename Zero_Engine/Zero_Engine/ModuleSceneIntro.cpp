@@ -29,7 +29,7 @@ bool ModuleSceneIntro::Start()
 
 	//InitCubeIndices();
 
-	warrior = App->fbx->LoadMesh("Game/warrior.fbx");
+	warrior = App->fbx->LoadMesh("Game/tirestack.fbx");
 
 	return ret;
 }

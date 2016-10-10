@@ -106,13 +106,18 @@ vector<Mesh> ModuleFBXLoader::LoadMesh(const char* path)
 				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * m.num_indices, m.indices, GL_STATIC_DRAW);
 			}
 
-			/*
+			
 			// copy normals
 			if (new_mesh->HasNormals())
 			{
 				m.num_normals = new_mesh->mNumVertices;
 				m.normals = new float[m.num_normals * 3]; // assume each face is a triangle
-				memcpy(m.normals, new_mesh->mNormals, sizeof(float) * m.num_normals * 3);
+				for (int i = 0; i < new_mesh->mNumVertices; ++i)
+				{
+					memcpy(&m.normals[i * 3], &new_mesh->mNormals[i].x, sizeof(float));
+					memcpy(&m.normals[i * 3 + 1], &new_mesh->mNormals[i].y, sizeof(float));
+					memcpy(&m.normals[i * 3 + 2], &new_mesh->mNormals[i].z, sizeof(float));
+				}
 				// normals to buffer
 				glGenBuffers(1, (GLuint*)&(m.id_normals));
 				glBindBuffer(GL_ARRAY_BUFFER, m.id_normals);
@@ -125,13 +130,17 @@ vector<Mesh> ModuleFBXLoader::LoadMesh(const char* path)
 			{
 				m.num_uvs = new_mesh->mNumVertices;
 				m.uvs = new float[m.num_uvs * 2];
-				memcpy(m.uvs, new_mesh->mTextureCoords, sizeof(float) * m.num_uvs * 2);
+				for (int i = 0; i < new_mesh->mNumVertices; ++i)
+				{
+					memcpy(&m.uvs[i * 2], &new_mesh->mTextureCoords[0][i].x, sizeof(float));
+					memcpy(&m.uvs[(i * 2) + 1], &new_mesh->mTextureCoords[0][i].y, sizeof(float));
+				}
 				// UVs to buffer
 				glGenBuffers(1, (GLuint*)&(m.id_uvs));
 				glBindBuffer(GL_ARRAY_BUFFER, m.id_uvs);
 				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * m.num_uvs, m.uvs, GL_STATIC_DRAW);
 			}
-			*/
+			
 
 			ret.push_back(m);
 		}
