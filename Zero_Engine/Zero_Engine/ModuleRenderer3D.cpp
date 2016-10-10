@@ -178,7 +178,7 @@ void ModuleRenderer3D::RenderMesh(Mesh mesh)
 	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
 
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, App->fbx->LoadTexture("Game/tex.jpg").id);
+	glBindTexture(GL_TEXTURE_2D, App->fbx->LoadTexture("Game/tirestack.jpg").id);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
 	glDrawElements(GL_TRIANGLES, mesh.num_indices, GL_UNSIGNED_INT, NULL);
