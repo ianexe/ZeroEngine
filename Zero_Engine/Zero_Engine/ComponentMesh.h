@@ -7,6 +7,7 @@
 class ComponentMesh : public Component
 {
 public:
+	ComponentMesh(GameObject* _go);
 	ComponentMesh(GameObject* _go, Mesh* _mesh);
 	~ComponentMesh();
 

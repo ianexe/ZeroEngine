@@ -345,6 +345,9 @@
     <ClInclude Include="Texture.h">
       <Filter>Sources\Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleGOManager.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="log.cpp">
@@ -535,6 +538,9 @@
     </ClCompile>
     <ClCompile Include="ComponentMaterial.cpp">
       <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGOManager.cpp">
+      <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

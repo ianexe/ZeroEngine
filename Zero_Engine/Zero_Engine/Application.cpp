@@ -12,6 +12,7 @@ Application::Application()
 	editor = new ModuleEditor(this);
 	fs = new ModuleFileSystem(this);
 	fbx = new ModuleFBXLoader(this);
+	go = new ModuleGOManager(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -25,6 +26,7 @@ Application::Application()
 	AddModule(fs);
 	AddModule(fbx);
 	AddModule(physics);
+	AddModule(go);
 
 	// Scenes
 	AddModule(scene_intro);

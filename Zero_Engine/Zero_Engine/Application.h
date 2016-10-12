@@ -15,6 +15,7 @@
 #include "ModuleEditor.h"
 #include "ModuleFileSystem.h"
 #include "ModuleFBXLoader.h"
+#include "ModuleGOManager.h"
 
 using namespace std;
 
@@ -31,6 +32,7 @@ public:
 	ModuleEditor* editor;
 	ModuleFileSystem* fs;
 	ModuleFBXLoader* fbx;
+	ModuleGOManager* go;
 
 private:
 

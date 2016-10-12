@@ -39,6 +39,7 @@ public:
 public:
 	ComponentType type = COMP_NULL;
 	bool enabled = true;
+	bool multiple = false;
 
 	GameObject* go = NULL;
 

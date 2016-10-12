@@ -1,6 +1,14 @@
 #include "ComponentTransform.h"
 #include "GameObject.h"
 
+ComponentTransform::ComponentTransform(GameObject* _go) : Component(_go)
+{
+	type = COMP_TRANSFORM;
+	pos = float3::zero;
+	scale = float3::one;
+	rotation = Quat::identity;
+}
+
 ComponentTransform::ComponentTransform(GameObject* _go, float3 _pos, float3 _scale, Quat _rot) : Component(_go)
 {
 	type = COMP_TRANSFORM;

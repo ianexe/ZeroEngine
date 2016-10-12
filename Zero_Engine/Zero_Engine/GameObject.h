@@ -8,14 +8,20 @@ class GameObject
 {
 public:
 	GameObject();
+	GameObject(GameObject* _parent);
 	~GameObject();
 
 	void Update();
 	Component* FindComponent(ComponentType type);
 
+	void AddChild(GameObject* _child);
+	Component* AddComponent(ComponentType type);
+
+	void SetName(char* _name);
+
 public:
-	GameObject*					parent;
-	char*						string;
+	GameObject*					parent = nullptr;
+	char*						name = "GameObject";
 	std::vector<Component*>		components;
 	std::vector<GameObject*>	children;
 };

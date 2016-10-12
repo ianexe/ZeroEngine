@@ -7,6 +7,7 @@
 class ComponentMaterial : public Component
 {
 public:
+	ComponentMaterial(GameObject* _go);
 	ComponentMaterial(GameObject* _go, Texture* _tex);
 	~ComponentMaterial();
 
