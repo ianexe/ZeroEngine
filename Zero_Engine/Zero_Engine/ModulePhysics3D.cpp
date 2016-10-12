@@ -122,7 +122,7 @@ update_status ModulePhysics3D::Update(float dt)
 
 		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 		{
-			Sphere s(1);
+			Sphere3D s(1);
 			s.SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 			float force = 30.0f;
 			AddBody(s)->Push(-(App->camera->Z.x * force), -(App->camera->Z.y * force), -(App->camera->Z.z * force));
@@ -180,7 +180,7 @@ bool ModulePhysics3D::CleanUp()
 }
 
 // ---------------------------------------------------------
-PhysBody3D* ModulePhysics3D::AddBody(const Sphere& sphere, float mass, bool isSensor)
+PhysBody3D* ModulePhysics3D::AddBody(const Sphere3D& sphere, float mass, bool isSensor)
 {
 	btCollisionShape* colShape = new btSphereShape(sphere.radius);
 	shapes.push_back(colShape);
@@ -211,7 +211,7 @@ PhysBody3D* ModulePhysics3D::AddBody(const Sphere& sphere, float mass, bool isSe
 
 
 // ---------------------------------------------------------
-PhysBody3D* ModulePhysics3D::AddBody(const Cube& cube, float mass, bool isSensor)
+PhysBody3D* ModulePhysics3D::AddBody(const Cube3D& cube, float mass, bool isSensor)
 {
 	btCollisionShape* colShape = new btBoxShape(btVector3(cube.size.x*0.5f, cube.size.y*0.5f, cube.size.z*0.5f));
 	shapes.push_back(colShape);
@@ -241,7 +241,7 @@ PhysBody3D* ModulePhysics3D::AddBody(const Cube& cube, float mass, bool isSensor
 }
 
 // ---------------------------------------------------------
-PhysBody3D* ModulePhysics3D::AddBody(const Cylinder& cylinder, float mass, bool isSensor)
+PhysBody3D* ModulePhysics3D::AddBody(const Cylinder3D& cylinder, float mass, bool isSensor)
 {
 	btCollisionShape* colShape = new btCylinderShapeX(btVector3(cylinder.height*0.5f, cylinder.radius, 0.0f));
 	shapes.push_back(colShape);

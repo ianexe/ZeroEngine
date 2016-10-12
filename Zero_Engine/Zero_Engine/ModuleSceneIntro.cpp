@@ -60,7 +60,7 @@ update_status ModuleSceneIntro::Update(float dt)
 //Draws everything on scene, to be called in ModuleRenderer
 void ModuleSceneIntro::Render()
 {
-	Plane(0, 1, 0, 0).Render();
+	Plane3D(0, 1, 0, 0).Render();
 
 	//Draw Meshes
 	//for (vector<Mesh>::iterator item = warrior.begin(); item != warrior.end(); ++item)

@@ -38,33 +38,33 @@ protected:
 };
 
 // ============================================
-class Cube : public Primitive
+class Cube3D : public Primitive
 {
 public:
-	Cube();
-	Cube(float sizeX, float sizeY, float sizeZ);
+	Cube3D();
+	Cube3D(float sizeX, float sizeY, float sizeZ);
 	void InnerRender() const;
 public:
 	vec3 size;
 };
 
 // ============================================
-class Sphere : public Primitive
+class Sphere3D : public Primitive
 {
 public:
-	Sphere();
-	Sphere(float radius);
+	Sphere3D();
+	Sphere3D(float radius);
 	void InnerRender() const;
 public:
 	float radius;
 };
 
 // ============================================
-class Cylinder : public Primitive
+class Cylinder3D : public Primitive
 {
 public:
-	Cylinder();
-	Cylinder(float radius, float height);
+	Cylinder3D();
+	Cylinder3D(float radius, float height);
 	void InnerRender() const;
 public:
 	float radius;
@@ -72,11 +72,11 @@ public:
 };
 
 // ============================================
-class Line : public Primitive
+class Line3D : public Primitive
 {
 public:
-	Line();
-	Line(float x, float y, float z);
+	Line3D();
+	Line3D(float x, float y, float z);
 	void InnerRender() const;
 public:
 	vec3 origin;
@@ -84,11 +84,11 @@ public:
 };
 
 // ============================================
-class Plane : public Primitive
+class Plane3D : public Primitive
 {
 public:
-	Plane();
-	Plane(float x, float y, float z, float d);
+	Plane3D();
+	Plane3D(float x, float y, float z, float d);
 	void InnerRender() const;
 public:
 	vec3 normal;

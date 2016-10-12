@@ -1,3 +1,4 @@
+
 #ifndef __MODULE_PHYSICS3D_H__
 #define __MODULE_PHYSICS3D_H__
 
@@ -28,9 +29,9 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	PhysBody3D* AddBody(const Sphere& sphere, float mass = 1.0f, bool isSensor = false);
-	PhysBody3D* AddBody(const Cube& cube, float mass = 1.0f, bool isSensor = false);
-	PhysBody3D* AddBody(const Cylinder& cylinder, float mass = 1.0f, bool isSensor = false);
+	PhysBody3D* AddBody(const Sphere3D& sphere, float mass = 1.0f, bool isSensor = false);
+	PhysBody3D* AddBody(const Cube3D& cube, float mass = 1.0f, bool isSensor = false);
+	PhysBody3D* AddBody(const Cylinder3D& cylinder, float mass = 1.0f, bool isSensor = false);
 
 	void AddConstraintP2P(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec3& anchorA, const vec3& anchorB);
 	void AddConstraintHinge(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec3& anchorA, const vec3& anchorB, const vec3& axisS, const vec3& axisB, bool disable_collision = false);
@@ -67,7 +68,7 @@ public:
 	int	 getDebugMode() const;
 
 	DebugDrawModes mode;
-	Line line;
+	Line3D line;
 	Primitive point;
 };
 
