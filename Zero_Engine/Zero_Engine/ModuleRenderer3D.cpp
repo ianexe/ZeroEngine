@@ -165,6 +165,8 @@ void ModuleRenderer3D::OnResize(int width, int height, float fovy)
 
 void ModuleRenderer3D::RenderMesh(Mesh mesh, Texture* tex)
 {
+	glColor4f(1.0, 1.0, 1.0, 1.0); // reset gl color
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
