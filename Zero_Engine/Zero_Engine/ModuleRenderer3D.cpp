@@ -163,7 +163,7 @@ void ModuleRenderer3D::OnResize(int width, int height, float fovy)
 	glLoadIdentity();
 }
 
-void ModuleRenderer3D::RenderMesh(Mesh mesh)
+void ModuleRenderer3D::RenderMesh(Mesh mesh, Texture* tex)
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
@@ -177,8 +177,11 @@ void ModuleRenderer3D::RenderMesh(Mesh mesh)
 	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_uvs);
 	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
 
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, App->fbx->LoadTexture("Game/tirestack.jpg").id);
+	if (tex != nullptr)
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, tex->id);
+	}
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
 	glDrawElements(GL_TRIANGLES, mesh.num_indices, GL_UNSIGNED_INT, NULL);
@@ -186,5 +189,9 @@ void ModuleRenderer3D::RenderMesh(Mesh mesh)
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisable(GL_TEXTURE_2D);
+
+	if (tex != nullptr)
+	{
+		glDisable(GL_TEXTURE_2D);
+	}
 }

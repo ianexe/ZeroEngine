@@ -13,6 +13,9 @@ public:
 
 	void Update();
 
+	void SetTexture(Texture* _tex);
+	Texture* GetTexture();
+
 private:
 	Texture* tex;
 };

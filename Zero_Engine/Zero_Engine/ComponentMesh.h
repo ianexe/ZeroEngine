@@ -3,6 +3,7 @@
 
 #include "Component.h"
 #include "Mesh.h"
+#include <vector>
 
 class ComponentMesh : public Component
 {
@@ -13,8 +14,11 @@ public:
 
 	void Update();
 
+	void SetMesh(std::vector<Mesh> _mesh);
+	std::vector<Mesh> GetMesh();
+
 private:
-	Mesh* mesh;
+	std::vector<Mesh> mesh;
 };
 
 #endif // __COMPONENT_MESH_H__

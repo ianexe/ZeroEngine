@@ -19,3 +19,13 @@ ComponentMaterial::~ComponentMaterial()
 void ComponentMaterial::Update()
 {
 }
+
+void ComponentMaterial::SetTexture(Texture* _tex)
+{
+	tex = _tex;
+}
+
+Texture* ComponentMaterial::GetTexture()
+{
+	return tex;
+}

@@ -4,6 +4,8 @@
 #include "Primitive.h"
 #include "PhysBody3D.h"
 #include "ModuleFBXLoader.h"
+#include "ComponentMesh.h"
+#include "ComponentMaterial.h"
 
 #include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -31,6 +33,13 @@ bool ModuleSceneIntro::Start()
 
 	warrior = App->fbx->LoadMesh("Game/tirestack.fbx");
 
+	GameObject* tirestack = App->go->AddGameObject();
+	ComponentMesh* tire_mesh = (ComponentMesh*)tirestack->AddComponent(COMP_MESH);
+	tire_mesh->SetMesh(warrior);
+	ComponentMaterial* tire_material = (ComponentMaterial*)tirestack->AddComponent(COMP_MATERIAL);
+	Texture* tex = new Texture(App->fbx->LoadTexture("Game/tirestack.jpg"));
+	tire_material->SetTexture(tex);
+
 	return ret;
 }
 
@@ -54,8 +63,8 @@ void ModuleSceneIntro::Render()
 	Plane(0, 1, 0, 0).Render();
 
 	//Draw Meshes
-	for (vector<Mesh>::iterator item = warrior.begin(); item != warrior.end(); ++item)
-		App->renderer3D->RenderMesh((*item));
+	//for (vector<Mesh>::iterator item = warrior.begin(); item != warrior.end(); ++item)
+		//App->renderer3D->RenderMesh((*item));
 
 	//Draw cube by indices
 	/*

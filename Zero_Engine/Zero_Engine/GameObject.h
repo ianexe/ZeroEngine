@@ -12,6 +12,7 @@ public:
 	~GameObject();
 
 	void Update();
+	void Render();
 	Component* FindComponent(ComponentType type);
 
 	void AddChild(GameObject* _child);
@@ -19,11 +20,15 @@ public:
 
 	void SetName(char* _name);
 
+	void Enable();
+	void Disable();
+
 public:
 	GameObject*					parent = nullptr;
 	char*						name = "GameObject";
 	std::vector<Component*>		components;
 	std::vector<GameObject*>	children;
+	bool						enabled = true;
 };
 
 #endif // __GAMEOBJECT_H__

@@ -9,6 +9,9 @@
 #define MAX_LIGHTS 8
 
 struct Mesh;
+struct Texture;
+
+typedef void* SDL_GLContext;
 
 class ModuleRenderer3D : public Module
 {
@@ -23,7 +26,7 @@ public:
 
 	void OnResize(int width, int height, float fovy);
 
-	void RenderMesh(Mesh mesh);
+	void RenderMesh(Mesh mesh, Texture* tex);
 
 public:
 

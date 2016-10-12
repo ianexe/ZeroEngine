@@ -2,6 +2,9 @@
 #include "ComponentTransform.h"
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
+#include "Globals.h"
+#include "ModuleRenderer3D.h"
+#include "Application.h"
 
 using namespace std;
 
@@ -21,13 +24,26 @@ GameObject::~GameObject()
 
 void GameObject::Update()
 {
-	for (vector<Component*>::iterator item = components.begin(); item != components.end(); ++item)
+	if (enabled)
 	{
-		(*item)->Update();
+		for (vector<Component*>::iterator item = components.begin(); item != components.end(); ++item)
+		{
+			(*item)->Update();
+		}
+		for (vector<GameObject*>::iterator item = children.begin(); item != children.end(); ++item)
+		{
+			(*item)->Update();
+		}
 	}
-	for (vector<GameObject*>::iterator item = children.begin(); item != children.end(); ++item)
+}
+
+void GameObject::Render()
+{
+	if (enabled)
 	{
-		(*item)->Update();
+		ComponentTransform* _trans = (ComponentTransform*)FindComponent(COMP_TRANSFORM);
+		ComponentMesh* _mesh = (ComponentMesh*)FindComponent(COMP_MESH);
+		ComponentMaterial* _material = (ComponentMaterial*)FindComponent(COMP_MATERIAL);
 	}
 }
 
@@ -55,6 +71,15 @@ Component* GameObject::AddComponent(ComponentType type)
 {
 	Component* ret = nullptr;
 
+	for (vector<Component*>::iterator item = components.begin(); item != components.end(); ++item)
+	{
+		if ((*item)->type == type)
+		{
+			//Cannot add this type of component twice (LOG doesn't work)
+			return NULL;
+		}
+	}
+
 	switch (type)
 	{
 	case COMP_TRANSFORM:
@@ -79,6 +104,16 @@ Component* GameObject::AddComponent(ComponentType type)
 void GameObject::SetName(char* _name)
 {
 	name = _name;
+}
+
+void GameObject::Enable()
+{
+	enabled = true;
+}
+
+void GameObject::Disable()
+{
+	enabled = false;
 }
 
 
