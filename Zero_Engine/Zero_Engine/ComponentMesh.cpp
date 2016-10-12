@@ -22,13 +22,18 @@ void ComponentMesh::Update()
 {
 }
 
-void ComponentMesh::SetMesh(std::vector<Mesh> _mesh)
+void ComponentMesh::SetMesh(Mesh _mesh)
 {
 	mesh = _mesh;
 }
 
-std::vector<Mesh> ComponentMesh::GetMesh()
+Mesh ComponentMesh::GetMesh()
 {
 	return mesh;
+}
+
+std::vector<Mesh> ComponentMesh::GetMesh2()
+{
+	return mesh2;
 }
 

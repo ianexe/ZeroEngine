@@ -31,14 +31,15 @@ bool ModuleSceneIntro::Start()
 
 	//InitCubeIndices();
 
-	warrior = App->fbx->LoadMesh("Game/tirestack.fbx");
+	//warrior = App->fbx->LoadMesh("Game/tirestack.fbx");
 
 	GameObject* tirestack = App->go->AddGameObject();
-	ComponentMesh* tire_mesh = (ComponentMesh*)tirestack->AddComponent(COMP_MESH);
-	tire_mesh->SetMesh(warrior);
-	ComponentMaterial* tire_material = (ComponentMaterial*)tirestack->AddComponent(COMP_MATERIAL);
-	Texture* tex = new Texture(App->fbx->LoadTexture("Game/tirestack.jpg"));
-	tire_material->SetTexture(tex);
+	//ComponentMesh* tire_mesh = (ComponentMesh*)tirestack->AddComponent(COMP_MESH);
+	App->fbx->LoadMesh("Game/Town/Street environment_V01.fbx", tirestack);
+	//tire_mesh->SetMesh(warrior);
+	//ComponentMaterial* tire_material = (ComponentMaterial*)tirestack->AddComponent(COMP_MATERIAL);
+	//Texture* tex = new Texture(App->fbx->LoadTexture("Game/tirestack.jpg"));
+	//tire_material->SetTexture(tex);
 
 	return ret;
 }

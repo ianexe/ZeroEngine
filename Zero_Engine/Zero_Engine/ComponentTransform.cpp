@@ -27,6 +27,20 @@ void ComponentTransform::Update()
 {
 }
 
+float3 ComponentTransform::SetPosition(float3 _pos)
+{
+	return pos = _pos;
+}
+
+float3 ComponentTransform::SetScale(float3 _scale)
+{
+	return scale = _scale;
+}
+
+Quat ComponentTransform::SetRotation(Quat _rot)
+{
+	return rotation = _rot;
+}
 
 float4x4 ComponentTransform::GetDrawingMatrix()
 {

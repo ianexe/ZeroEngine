@@ -4,6 +4,9 @@
 #include "Module.h"
 #include "Mesh.h"
 #include "Texture.h"
+#include "MathGeoLib\MathGeoLib.h"
+
+class GameObject;
 
 class ModuleFBXLoader : public Module
 {
@@ -15,6 +18,7 @@ public:
 	bool CleanUp();
 
 	vector<Mesh> LoadMesh(const char* path);
+	void LoadMesh(const char* path, GameObject* go = nullptr);
 	Texture LoadTexture(const char* path);
 
 public:

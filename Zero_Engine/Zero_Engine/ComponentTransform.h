@@ -16,7 +16,7 @@ public:
 
 	float3 SetPosition(float3 _pos);
 	float3 SetScale(float3 _scale);
-	Quat SetRotiation(Quat _rot);
+	Quat SetRotation(Quat _rot);
 
 	float4x4 GetDrawingMatrix();
 

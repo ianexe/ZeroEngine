@@ -48,10 +48,9 @@ update_status ModuleGOManager::PostUpdate(float dt)
 			ComponentMesh* _mesh = (ComponentMesh*)(*item)->FindComponent(COMP_MESH);
 			ComponentMaterial* _material = (ComponentMaterial*)(*item)->FindComponent(COMP_MATERIAL);
 
-			vector<Mesh> vec = _mesh->GetMesh();
+			Mesh item_mesh = _mesh->GetMesh();
 
-			for (vector<Mesh>::iterator item2 = vec.begin(); item2 != vec.end(); ++item2)
-				App->renderer3D->RenderMesh((*item2), _material->GetTexture());
+			App->renderer3D->RenderMesh(item_mesh, _material->GetTexture());
 		}
 	}
 	//------------
