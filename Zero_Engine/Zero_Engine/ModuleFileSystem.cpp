@@ -33,7 +33,7 @@ bool ModuleFileSystem::Init()
 	// Add all paths in configuration in order (NOTE: Finish this with XML)
 
 	// Ask SDL for a write dir
-	char* write_path = SDL_GetPrefPath("Ezwix-Organization", "Ezwix");
+	char* write_path = SDL_GetPrefPath("Zero Engine", "ZE");
 
 	if (PHYSFS_setWriteDir(write_path) == 0)
 	{

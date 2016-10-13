@@ -35,7 +35,7 @@ bool ModuleSceneIntro::Start()
 
 	GameObject* tirestack = App->go->AddGameObject();
 	//ComponentMesh* tire_mesh = (ComponentMesh*)tirestack->AddComponent(COMP_MESH);
-	App->fbx->LoadMesh("Game/Town/Street environment_V01.fbx", tirestack);
+	App->fbx->LoadFBXRoot("Game/Town/Street environment_V01.fbx", tirestack);
 	//tire_mesh->SetMesh(warrior);
 	//ComponentMaterial* tire_material = (ComponentMaterial*)tirestack->AddComponent(COMP_MATERIAL);
 	//Texture* tex = new Texture(App->fbx->LoadTexture("Game/tirestack.jpg"));

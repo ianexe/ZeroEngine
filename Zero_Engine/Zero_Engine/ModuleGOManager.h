@@ -15,6 +15,7 @@ public:
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
+	void Render(GameObject* go);
 	bool CleanUp();
 
 	GameObject* AddGameObject(GameObject* parent = nullptr);

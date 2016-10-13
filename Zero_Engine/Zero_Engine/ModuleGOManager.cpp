@@ -40,26 +40,34 @@ update_status ModuleGOManager::PostUpdate(float dt)
 {
 	//Render
 	//------------
-	for (vector<GameObject*>::iterator item = root->children.begin(); item != root->children.end(); ++item)
+	Render(root);
+	//------------
+
+	return UPDATE_CONTINUE;
+}
+
+void ModuleGOManager::Render(GameObject* go)
+{
+	for (vector<GameObject*>::iterator item = go->children.begin(); item != go->children.end(); ++item)
 	{
+		Render(*item);
 		if ((*item)->enabled)
 		{
 			ComponentTransform* _trans = (ComponentTransform*)(*item)->FindComponent(COMP_TRANSFORM);
 			ComponentMesh* _mesh = (ComponentMesh*)(*item)->FindComponent(COMP_MESH);
 			ComponentMaterial* _material = (ComponentMaterial*)(*item)->FindComponent(COMP_MATERIAL);
 
-			Mesh item_mesh = _mesh->GetMesh();
+			if (_mesh != nullptr)
+			{
+				Mesh item_mesh = _mesh->GetMesh();
+				if (_material != nullptr)
+					App->renderer3D->RenderMesh(item_mesh, _trans->GetDrawingMatrix(),_material->GetTexture());
 
-			if (_material != nullptr)
-				App->renderer3D->RenderMesh(item_mesh, _material->GetTexture());
-
-			else
-				App->renderer3D->RenderMesh(item_mesh, nullptr);
+				else
+					App->renderer3D->RenderMesh(item_mesh, _trans->GetDrawingMatrix(), nullptr);
+			}
 		}
 	}
-	//------------
-
-	return UPDATE_CONTINUE;
 }
 
 bool ModuleGOManager::CleanUp()

@@ -8,6 +8,9 @@
 
 class GameObject;
 
+struct aiNode;
+struct aiScene;
+
 class ModuleFBXLoader : public Module
 {
 public:
@@ -20,6 +23,8 @@ public:
 	vector<Mesh> LoadMesh(const char* path);
 	void LoadMesh(const char* path, GameObject* go = nullptr);
 	Texture* LoadTexture(const char* path);
+	bool LoadFBXRoot(const char* path, GameObject* go = nullptr);
+	void LoadNode(aiNode* node, const aiScene* scene, GameObject* go);
 
 public:
 

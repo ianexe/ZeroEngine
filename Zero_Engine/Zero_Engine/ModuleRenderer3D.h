@@ -3,7 +3,7 @@
 
 #include "Module.h"
 #include "Globals.h"
-#include "glmath.h"
+#include "MathGeoLib\MathGeoLib.h"
 #include "Light.h"
 
 #define MAX_LIGHTS 8
@@ -26,7 +26,7 @@ public:
 
 	void OnResize(int width, int height, float fovy);
 
-	void RenderMesh(Mesh mesh, Texture* tex);
+	void RenderMesh(Mesh mesh, float4x4 trans, Texture* tex);
 
 public:
 
