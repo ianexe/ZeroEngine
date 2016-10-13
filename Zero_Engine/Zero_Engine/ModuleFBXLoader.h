@@ -19,7 +19,7 @@ public:
 
 	vector<Mesh> LoadMesh(const char* path);
 	void LoadMesh(const char* path, GameObject* go = nullptr);
-	Texture LoadTexture(const char* path);
+	Texture* LoadTexture(const char* path);
 
 public:
 

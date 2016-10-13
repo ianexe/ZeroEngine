@@ -50,7 +50,11 @@ update_status ModuleGOManager::PostUpdate(float dt)
 
 			Mesh item_mesh = _mesh->GetMesh();
 
-			App->renderer3D->RenderMesh(item_mesh, _material->GetTexture());
+			if (_material != nullptr)
+				App->renderer3D->RenderMesh(item_mesh, _material->GetTexture());
+
+			else
+				App->renderer3D->RenderMesh(item_mesh, nullptr);
 		}
 	}
 	//------------

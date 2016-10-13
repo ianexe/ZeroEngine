@@ -281,11 +281,19 @@ void ModuleFBXLoader::LoadMesh(const char* path, GameObject* go)
 				aiString path;
 				material->GetTexture(aiTextureType_DIFFUSE, 0, &path);
 
-				Texture* _tex = new Texture;
-				_tex = &LoadTexture(path.data);
+				if (path.length > 1)
+				{
+					std::string str1 = path.data;
+					str1.erase(0, 12);
+					std::string str2 = "Game/Town/";
+					str2 += str1;
 
-				ComponentMaterial* add_material = (ComponentMaterial*)to_add->AddComponent(COMP_MATERIAL);
-				add_material->SetTexture(_tex);
+					Texture* _tex = new Texture;
+					_tex = LoadTexture(str2.c_str());
+
+					ComponentMaterial* add_material = (ComponentMaterial*)to_add->AddComponent(COMP_MATERIAL);
+					add_material->SetTexture(_tex);
+				}
 			}
 		}
 		aiReleaseImport(scene);
@@ -299,9 +307,9 @@ void ModuleFBXLoader::LoadMesh(const char* path, GameObject* go)
 	delete[] buff;
 }
 
-Texture ModuleFBXLoader::LoadTexture(const char* path)
+Texture* ModuleFBXLoader::LoadTexture(const char* path)
 {
-	Texture ret;
+	Texture* ret = new Texture;
 
 	uint image;
 
@@ -309,11 +317,11 @@ Texture ModuleFBXLoader::LoadTexture(const char* path)
 	ilBindImage(image);
 
 	ilLoadImage(path);
-	iluFlipImage();
-	ret.width = ilGetInteger(IL_IMAGE_WIDTH);
-	ret.height = ilGetInteger(IL_IMAGE_HEIGHT);
+	//iluFlipImage();
+	ret->width = ilGetInteger(IL_IMAGE_WIDTH);
+	ret->height = ilGetInteger(IL_IMAGE_HEIGHT);
 
-	ret.id = ilutGLBindTexImage();
+	ret->id = ilutGLBindTexImage();
 
 	ilDeleteImages(1, &image);
 
