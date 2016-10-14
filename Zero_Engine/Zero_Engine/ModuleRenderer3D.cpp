@@ -167,8 +167,10 @@ void ModuleRenderer3D::RenderMesh(Mesh mesh, float4x4 trans, Texture* tex)
 {
 	glColor4f(1.0, 1.0, 1.0, 1.0); // reset gl color
 
-	//glPushMatrix();
-	//glMultMatrixf(trans.ptr());
+	float4x4 _trans = trans.Transposed();
+
+	glPushMatrix();
+	glMultMatrixf(_trans.ptr());
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
@@ -191,7 +193,7 @@ void ModuleRenderer3D::RenderMesh(Mesh mesh, float4x4 trans, Texture* tex)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
 	glDrawElements(GL_TRIANGLES, mesh.num_indices, GL_UNSIGNED_INT, NULL);
 
-	//glPopMatrix();
+	glPopMatrix();
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);

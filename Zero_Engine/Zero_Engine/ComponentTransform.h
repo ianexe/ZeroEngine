@@ -24,6 +24,9 @@ private:
 	float3	pos;
 	float3	scale;
 	Quat	rotation;
+
+	float4x4 local_trans;
+	float4x4 global_trans;
 };
 
 #endif // __COMPONENT_TRANSFORM_H__

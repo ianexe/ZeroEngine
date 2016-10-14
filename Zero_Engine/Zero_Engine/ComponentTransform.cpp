@@ -7,6 +7,7 @@ ComponentTransform::ComponentTransform(GameObject* _go) : Component(_go)
 	pos = float3::zero;
 	scale = float3::one;
 	rotation = Quat::identity;
+	local_trans = float4x4::FromTRS(pos, rotation, scale);
 }
 
 
@@ -16,6 +17,7 @@ ComponentTransform::ComponentTransform(GameObject* _go, float3 _pos, float3 _sca
 	pos = _pos;
 	scale = _scale;
 	rotation = _rot;
+	local_trans = float4x4::FromTRS(pos, rotation, scale);
 }
 
 
@@ -29,28 +31,26 @@ void ComponentTransform::Update()
 
 float3 ComponentTransform::SetPosition(float3 _pos)
 {
-	return pos = _pos;
+	pos = _pos;
+	local_trans = float4x4::FromTRS(pos, rotation, scale);
+	return pos;
 }
 
 float3 ComponentTransform::SetScale(float3 _scale)
 {
-	return scale = _scale;
+	scale = _scale;
+	local_trans = float4x4::FromTRS(pos, rotation, scale);
+	return scale;
 }
 
 Quat ComponentTransform::SetRotation(Quat _rot)
 {
-	return rotation = _rot;
+	rotation = _rot;
+	local_trans = float4x4::FromTRS(pos, rotation, scale);
+	return rotation;
 }
 
 float4x4 ComponentTransform::GetDrawingMatrix()
 {
-	float4x4 ret = float4x4::FromTRS(pos, rotation, scale);
-
-	if (go->parent != NULL)
-	{
-		ComponentTransform* parent_trans = (ComponentTransform*)go->parent->FindComponent(COMP_TRANSFORM);
-		ret = parent_trans->GetDrawingMatrix()*ret;
-	}
-
-	return ret;
+	return local_trans;
 }
