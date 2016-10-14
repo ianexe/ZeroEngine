@@ -23,6 +23,7 @@ public:
 
 public:
 	GameObject* root;
+	GameObject* selected = nullptr;
 };
 
 #endif // __MODULE_GOMANAGER_H__
