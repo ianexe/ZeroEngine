@@ -17,11 +17,10 @@ public:
 	void SetMesh(Mesh _mesh);
 	void SetMesh2(std::vector<Mesh> _mesh);
 	Mesh GetMesh();
-	std::vector<Mesh> GetMesh2();
+	void ShowEditor();
 
 private:
 	Mesh mesh;
-	std::vector<Mesh> mesh2;
 };
 
 #endif // __COMPONENT_MESH_H__

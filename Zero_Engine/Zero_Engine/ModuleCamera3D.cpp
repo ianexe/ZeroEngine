@@ -15,8 +15,8 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 	Y = vec3(0.0f, 1.0f, 0.0f);
 	Z = vec3(0.0f, 0.0f, 1.0f);
 
-	Position = vec3(100.0f, 75.0f, 100.0f);
-	Reference = vec3(100.0f, 75.0f, 100.0f);
+	Position = vec3(0.0f, 100.0f, 150.0f);
+	Reference = vec3(0.0f, 100.0f, 150.0f);
 }
 
 ModuleCamera3D::~ModuleCamera3D()
@@ -27,6 +27,8 @@ bool ModuleCamera3D::Start()
 {
 	LOG("Setting up the camera");
 	bool ret = true;
+
+	LookAt({ 0,0,0 });
 
 	return ret;
 }

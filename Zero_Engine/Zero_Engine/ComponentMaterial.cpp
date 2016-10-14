@@ -1,4 +1,6 @@
 #include "ComponentMaterial.h"
+#include "Imgui\imgui.h"
+#include "Imgui\imgui_impl_sdl_gl3.h"
 
 ComponentMaterial::ComponentMaterial(GameObject* _go) : Component(_go)
 {
@@ -28,4 +30,10 @@ void ComponentMaterial::SetTexture(Texture* _tex)
 Texture* ComponentMaterial::GetTexture()
 {
 	return tex;
+}
+
+void ComponentMaterial::ShowEditor()
+{
+	ImGui::Begin("Material");
+	ImGui::End();
 }

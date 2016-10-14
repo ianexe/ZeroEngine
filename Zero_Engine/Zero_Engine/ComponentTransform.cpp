@@ -1,5 +1,7 @@
 #include "ComponentTransform.h"
 #include "GameObject.h"
+#include "Imgui\imgui.h"
+#include "Imgui\imgui_impl_sdl_gl3.h"
 
 ComponentTransform::ComponentTransform(GameObject* _go) : Component(_go)
 {
@@ -61,4 +63,23 @@ float4x4 ComponentTransform::GetDrawingMatrix()
 	}
 
 	return ret;
+}
+
+void ComponentTransform::ShowEditor()
+{
+	ImGui::Begin("Transform");
+
+	ImGui::PushItemWidth(200);
+	if (ImGui::DragFloat3("Position", pos.ptr(), 0.2f))
+	{
+		SetPosition(pos);
+	}
+
+	if (ImGui::DragFloat3("Scale", scale.ptr(), 0.05f))
+	{
+		SetScale(scale);
+	}
+	ImGui::PopItemWidth();
+
+	ImGui::End();
 }

@@ -61,6 +61,11 @@ update_status ModuleGOManager::PostUpdate(float dt)
 	ImGui::End();
 	//------------
 
+	if (selected != nullptr)
+	{
+		selected->ShowEditor();
+	}
+
 	return UPDATE_CONTINUE;
 }
 

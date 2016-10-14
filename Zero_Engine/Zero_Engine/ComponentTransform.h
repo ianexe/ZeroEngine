@@ -20,6 +20,8 @@ public:
 
 	float4x4 GetDrawingMatrix();
 
+	void ShowEditor();
+
 private:
 	float3	pos;
 	float3	scale;

@@ -16,6 +16,8 @@ public:
 	void SetTexture(Texture* _tex);
 	Texture* GetTexture();
 
+	void ShowEditor();
+
 private:
 	Texture* tex;
 };

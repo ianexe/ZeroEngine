@@ -116,4 +116,11 @@ void GameObject::Disable()
 	enabled = false;
 }
 
+void GameObject::ShowEditor()
+{
+	for (vector<Component*>::iterator item = components.begin(); item != components.end(); ++item)
+	{
+		(*item)->ShowEditor();
+	}
+}
 

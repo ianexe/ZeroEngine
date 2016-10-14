@@ -23,6 +23,8 @@ public:
 	void Enable();
 	void Disable();
 
+	void ShowEditor();
+
 public:
 	GameObject*					parent = nullptr;
 	std::string					name = "GameObject";
