@@ -75,7 +75,7 @@ Component* GameObject::AddComponent(ComponentType type)
 	{
 		if ((*item)->type == type)
 		{
-			//Cannot add this type of component twice (LOG doesn't work)
+			LOG("Cannot add this type of component twice");
 			return NULL;
 		}
 	}

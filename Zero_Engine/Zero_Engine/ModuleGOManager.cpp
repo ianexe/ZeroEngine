@@ -4,6 +4,8 @@
 #include "ComponentTransform.h"
 #include "ComponentMaterial.h"
 #include "ComponentMesh.h"
+#include "Imgui\imgui.h"
+#include "Imgui\imgui_impl_sdl_gl3.h"
 
 ModuleGOManager::ModuleGOManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -43,6 +45,22 @@ update_status ModuleGOManager::PostUpdate(float dt)
 	Render(root);
 	//------------
 
+	//ShowEditor
+	//------------
+	if (ImGui::BeginPopup("GameObjects Window"))
+	{
+		if (ImGui::CollapsingHeader("GameObjects"))
+		{
+			if (ImGui::TreeNode(root->name.data()))
+			{
+				CreateUI(root);
+				ImGui::TreePop();
+			}
+		}
+		ImGui::EndPopup();
+	}
+	//------------
+
 	return UPDATE_CONTINUE;
 }
 
@@ -66,6 +84,18 @@ void ModuleGOManager::Render(GameObject* go)
 				else
 					App->renderer3D->RenderMesh(item_mesh, _trans->GetDrawingMatrix(), nullptr);
 			}
+		}
+	}
+}
+
+void ModuleGOManager::CreateUI(GameObject* go)
+{
+	for (vector<GameObject*>::iterator item = go->children.begin(); item != go->children.end(); ++item)
+	{
+		if (ImGui::TreeNode((*item)->name.data()))
+		{
+			CreateUI(*item);
+			ImGui::TreePop();
 		}
 	}
 }

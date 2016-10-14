@@ -25,7 +25,7 @@ public:
 
 public:
 	GameObject*					parent = nullptr;
-	char*						name = "GameObject";
+	std::string					name = "GameObject";
 	std::vector<Component*>		components;
 	std::vector<GameObject*>	children;
 	bool						enabled = true;

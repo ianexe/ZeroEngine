@@ -377,7 +377,7 @@ bool ModuleFBXLoader::LoadFBXRoot(const char* path, GameObject* go)
 	trans->SetScale(scale);
 	trans->SetRotation(rot);
 
-	go->SetName("fulanito");
+	go->SetName(scene->mRootNode->mName.data);
 
 	if (scene != nullptr)
 	{
@@ -404,6 +404,7 @@ bool ModuleFBXLoader::LoadFBXRoot(const char* path, GameObject* go)
 void ModuleFBXLoader::LoadNode(aiNode* node, const aiScene* scene, GameObject* go)
 {
 	GameObject* new_go = App->go->AddGameObject(go);
+	new_go->SetName(node->mName.data);
 	
 	for (int i = 0; i < node->mNumChildren; ++i)
 	{
@@ -422,6 +423,7 @@ void ModuleFBXLoader::LoadNode(aiNode* node, const aiScene* scene, GameObject* g
 			if (new_go->FindComponent(COMP_MESH))
 			{
 				new_go = App->go->AddGameObject(go);
+				new_go->SetName(node->mName.data);
 			}
 			Mesh m;
 			aiMesh* new_mesh = scene->mMeshes[node->mMeshes[j]];
