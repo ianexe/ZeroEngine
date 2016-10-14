@@ -24,8 +24,6 @@ public:
 
 public:
 	uint my_id;
-
-	vector<Mesh> warrior;
 };
 
 #endif // __MODULE_SCENEINTRO_H__

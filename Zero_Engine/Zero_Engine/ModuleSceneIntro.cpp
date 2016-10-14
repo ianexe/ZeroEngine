@@ -31,15 +31,8 @@ bool ModuleSceneIntro::Start()
 
 	//InitCubeIndices();
 
-	//warrior = App->fbx->LoadMesh("Game/tirestack.fbx");
-
-	GameObject* tirestack = App->go->AddGameObject();
-	//ComponentMesh* tire_mesh = (ComponentMesh*)tirestack->AddComponent(COMP_MESH);
-	App->fbx->LoadFBXRoot("Game/Town/Street environment_V01.fbx", tirestack);
-	//tire_mesh->SetMesh(warrior);
-	//ComponentMaterial* tire_material = (ComponentMaterial*)tirestack->AddComponent(COMP_MATERIAL);
-	//Texture* tex = new Texture(App->fbx->LoadTexture("Game/tirestack.jpg"));
-	//tire_material->SetTexture(tex);
+	GameObject* street = App->go->AddGameObject();
+	App->fbx->LoadFBXRoot("Game/Street environment_V01.fbx", street);
 
 	return ret;
 }
@@ -62,20 +55,6 @@ update_status ModuleSceneIntro::Update(float dt)
 void ModuleSceneIntro::Render()
 {
 	Plane3D(0, 1, 0, 0).Render();
-
-	//Draw Meshes
-	//for (vector<Mesh>::iterator item = warrior.begin(); item != warrior.end(); ++item)
-		//App->renderer3D->RenderMesh((*item));
-
-	//Draw cube by indices
-	/*
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glBindBuffer(GL_ARRAY_BUFFER, my_id);
-	glVertexPointer(3, GL_FLOAT, 0, NULL);
-	// ... draw other buffers
-	glDrawArrays(GL_TRIANGLES, 0, 36 * 3);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	*/
 }
 
 void ModuleSceneIntro::DirectModeCube()

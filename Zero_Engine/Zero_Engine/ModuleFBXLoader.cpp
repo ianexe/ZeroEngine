@@ -519,8 +519,9 @@ void ModuleFBXLoader::LoadNode(aiNode* node, const aiScene* scene, GameObject* g
 				if (path.length > 1)
 				{
 					std::string str1 = path.data;
-					str1.erase(0, 12);
-					std::string str2 = "Game/Town/";
+					str1.erase(0, str1.find_last_of("\\")+1);
+
+					std::string str2 = "Game/Textures/";
 					str2 += str1;
 
 					Texture* _tex = new Texture;
