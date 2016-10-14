@@ -26,7 +26,6 @@ private:
 	Quat	rotation;
 
 	float4x4 local_trans;
-	float4x4 global_trans;
 };
 
 #endif // __COMPONENT_TRANSFORM_H__

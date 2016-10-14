@@ -52,5 +52,13 @@ Quat ComponentTransform::SetRotation(Quat _rot)
 
 float4x4 ComponentTransform::GetDrawingMatrix()
 {
-	return local_trans;
+	float4x4 ret = local_trans;
+
+	if (go->parent != nullptr)
+	{
+		ComponentTransform* comp = (ComponentTransform*)go->parent->FindComponent(COMP_TRANSFORM);
+		ret = comp->GetDrawingMatrix()*ret;
+	}
+
+	return ret;
 }
