@@ -3,8 +3,27 @@
 
 #include "Globals.h"
 
-struct Mesh
+class Mesh
 {
+public:
+	Mesh()
+	{}
+
+	~Mesh()
+	{
+		delete(vertices);
+		vertices = nullptr;
+
+		delete(indices);
+		indices = nullptr;
+
+		delete(normals);
+		normals = nullptr;
+
+		delete(uvs);
+		uvs = nullptr;
+	}
+public:
 	//Vertices
 	uint id_vertices = 0;
 	uint num_vertices = 0;

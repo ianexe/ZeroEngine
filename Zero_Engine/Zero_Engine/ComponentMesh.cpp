@@ -16,7 +16,8 @@ ComponentMesh::ComponentMesh(GameObject* _go, Mesh* _mesh) : Component (_go)
 
 ComponentMesh::~ComponentMesh()
 {
-	RELEASE(mesh);
+	delete(mesh);
+	mesh = nullptr;
 }
 
 void ComponentMesh::Update()

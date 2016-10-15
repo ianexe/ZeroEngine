@@ -244,6 +244,9 @@ void ModuleFBXLoader::LoadNode(aiNode* node, const aiScene* scene, GameObject* g
 
 					ComponentMaterial* add_material = (ComponentMaterial*)new_go->AddComponent(COMP_MATERIAL);
 					add_material->SetTexture(_tex);
+
+					str1.clear();
+					str2.clear();
 				}
 			}
 		}

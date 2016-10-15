@@ -24,6 +24,11 @@ GameObject::~GameObject()
 	{
 		RELEASE(*item);
 	}
+	components.clear();
+	children.clear();
+	parent = nullptr;
+	name.clear();
+	enabled = false;
 }
 
 void GameObject::Update()

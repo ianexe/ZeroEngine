@@ -24,6 +24,9 @@ bool ModuleEditor::CleanUp()
 {
 	//Shutting down ImGui
 	ImGui_ImplSdlGL3_Shutdown();
+
+	selected = nullptr;
+
 	return true;
 }
 

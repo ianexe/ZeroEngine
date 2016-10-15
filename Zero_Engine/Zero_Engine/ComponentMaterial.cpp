@@ -16,7 +16,8 @@ ComponentMaterial::ComponentMaterial(GameObject* _go, Texture* _tex) : Component
 
 ComponentMaterial::~ComponentMaterial()
 {
-	RELEASE(tex);
+	delete(tex);
+	tex = nullptr;
 }
 
 void ComponentMaterial::Update()

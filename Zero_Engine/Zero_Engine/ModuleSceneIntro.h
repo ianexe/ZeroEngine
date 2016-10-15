@@ -5,7 +5,8 @@
 #include "Globals.h"
 #include "Primitive.h"
 
-struct Mesh;
+class Mesh;
+class GameObject;
 
 class ModuleSceneIntro : public Module
 {
@@ -23,6 +24,7 @@ public:
 	void InitCubeIndices();
 
 public:
+	GameObject* street;
 	uint my_id;
 };
 

@@ -29,6 +29,7 @@ ComponentTransform::ComponentTransform(GameObject* _go, float3 _pos, float3 _sca
 
 ComponentTransform::~ComponentTransform()
 {
+	go = nullptr;
 }
 
 void ComponentTransform::Update()

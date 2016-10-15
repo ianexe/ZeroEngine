@@ -8,7 +8,7 @@
 
 #define MAX_LIGHTS 8
 
-struct Mesh;
+class Mesh;
 struct Texture;
 
 typedef void* SDL_GLContext;

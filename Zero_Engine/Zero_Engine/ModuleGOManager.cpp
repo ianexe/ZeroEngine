@@ -106,8 +106,10 @@ void ModuleGOManager::RemoveGameObject(GameObject* go)
 	if (go->parent != nullptr)
 	{
 		go->parent->RemoveChild(go);
+		go->parent = nullptr;
 	}
-	RELEASE(go);
+	delete(go);
+	go = nullptr;
 }
 
 void ModuleGOManager::ShowEditor()

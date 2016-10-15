@@ -31,7 +31,7 @@ bool ModuleSceneIntro::Start()
 
 	//InitCubeIndices();
 
-	GameObject* street = App->go->AddGameObject();
+	street = App->go->AddGameObject();
 	App->fbx->LoadFBXRoot("Game/Street environment_V01.fbx", street);
 
 	return ret;
@@ -41,6 +41,7 @@ bool ModuleSceneIntro::Start()
 bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
+	street = nullptr;
 
 	return true;
 }
