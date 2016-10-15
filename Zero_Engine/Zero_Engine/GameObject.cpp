@@ -20,6 +20,10 @@ GameObject::GameObject(GameObject* _parent)
 
 GameObject::~GameObject()
 {
+	for (vector<Component*>::iterator item = components.begin(); item != components.end(); ++item)
+	{
+		RELEASE(*item);
+	}
 }
 
 void GameObject::Update()
@@ -65,6 +69,15 @@ Component* GameObject::FindComponent(ComponentType type)
 void GameObject::AddChild(GameObject* _child)
 {
 	children.push_back(_child);
+}
+
+void GameObject::RemoveChild(GameObject* _child)
+{
+	for (int i = 0; i < children.size(); ++i)
+	{
+		if (children[i] == _child)
+			children.erase(children.begin() + i);
+	}
 }
 
 Component* GameObject::AddComponent(ComponentType type)

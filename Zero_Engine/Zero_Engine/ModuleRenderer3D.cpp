@@ -163,7 +163,7 @@ void ModuleRenderer3D::OnResize(int width, int height, float fovy)
 	glLoadIdentity();
 }
 
-void ModuleRenderer3D::RenderMesh(Mesh mesh, float4x4 trans, Texture* tex)
+void ModuleRenderer3D::RenderMesh(Mesh* mesh, float4x4 trans, Texture* tex)
 {
 	glColor4f(1.0, 1.0, 1.0, 1.0); // reset gl color
 
@@ -173,15 +173,15 @@ void ModuleRenderer3D::RenderMesh(Mesh mesh, float4x4 trans, Texture* tex)
 	glMultMatrixf(_trans.ptr());
 
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
 
 	glEnableClientState(GL_NORMAL_ARRAY);
-	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_normals);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_normals);
 	glNormalPointer(GL_FLOAT, 0, NULL);
 
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_uvs);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_uvs);
 	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
 
 	if (tex != nullptr)
@@ -190,8 +190,8 @@ void ModuleRenderer3D::RenderMesh(Mesh mesh, float4x4 trans, Texture* tex)
 		glBindTexture(GL_TEXTURE_2D, tex->id);
 	}
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
-	glDrawElements(GL_TRIANGLES, mesh.num_indices, GL_UNSIGNED_INT, NULL);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
+	glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
 
 	glPopMatrix();
 

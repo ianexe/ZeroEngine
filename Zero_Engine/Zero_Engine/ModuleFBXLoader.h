@@ -20,11 +20,10 @@ public:
 	bool Init();
 	bool CleanUp();
 
-	vector<Mesh> LoadMesh(const char* path);
-	void LoadMesh(const char* path, GameObject* go = nullptr);
-	Texture* LoadTexture(const char* path);
 	bool LoadFBXRoot(const char* path, GameObject* go = nullptr);
 	void LoadNode(aiNode* node, const aiScene* scene, GameObject* go);
+
+	Texture* LoadTexture(const char* path);
 
 public:
 

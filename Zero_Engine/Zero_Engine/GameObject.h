@@ -16,6 +16,7 @@ public:
 	Component* FindComponent(ComponentType type);
 
 	void AddChild(GameObject* _child);
+	void RemoveChild(GameObject* _child);
 	Component* AddComponent(ComponentType type);
 
 	void SetName(char* _name);

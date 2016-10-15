@@ -16,6 +16,7 @@ ComponentMaterial::ComponentMaterial(GameObject* _go, Texture* _tex) : Component
 
 ComponentMaterial::~ComponentMaterial()
 {
+	RELEASE(tex);
 }
 
 void ComponentMaterial::Update()

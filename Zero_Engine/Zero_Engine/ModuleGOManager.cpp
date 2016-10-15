@@ -82,7 +82,7 @@ void ModuleGOManager::Render(GameObject* go)
 
 			if (_mesh != nullptr)
 			{
-				Mesh item_mesh = _mesh->GetMesh();
+				Mesh* item_mesh = _mesh->GetMesh();
 				if (_material != nullptr)
 					App->renderer3D->RenderMesh(item_mesh, _trans->GetDrawingMatrix(),_material->GetTexture());
 
@@ -115,6 +115,7 @@ bool ModuleGOManager::CleanUp()
 {
 	bool ret = true;
 
+	RemoveGameObject(root);
 
 	return ret;
 }
@@ -132,3 +133,18 @@ GameObject* ModuleGOManager::AddGameObject(GameObject* parent)
 	return ret;
 }
 
+void ModuleGOManager::RemoveGameObject(GameObject* go)
+{
+	if (go->children.size() > 0)
+	{
+		for (int i = 0; i < go->children.size(); ++i)
+		{
+			RemoveGameObject(go->children[i]);
+		}
+	}
+	if (go->parent != nullptr)
+	{
+		go->parent->RemoveChild(go);
+	}
+	RELEASE(go);
+}

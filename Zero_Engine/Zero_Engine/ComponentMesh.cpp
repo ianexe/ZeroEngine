@@ -5,27 +5,30 @@
 ComponentMesh::ComponentMesh(GameObject* _go) : Component(_go)
 {
 	type = COMP_MESH;
+	mesh = nullptr;
 }
 
 ComponentMesh::ComponentMesh(GameObject* _go, Mesh* _mesh) : Component (_go)
 {
 	type = COMP_MESH;
+	mesh = _mesh;
 }
 
 ComponentMesh::~ComponentMesh()
 {
+	RELEASE(mesh);
 }
 
 void ComponentMesh::Update()
 {
 }
 
-void ComponentMesh::SetMesh(Mesh _mesh)
+void ComponentMesh::SetMesh(Mesh* _mesh)
 {
 	mesh = _mesh;
 }
 
-Mesh ComponentMesh::GetMesh()
+Mesh* ComponentMesh::GetMesh()
 {
 	return mesh;
 }

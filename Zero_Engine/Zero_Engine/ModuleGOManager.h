@@ -20,6 +20,7 @@ public:
 	bool CleanUp();
 
 	GameObject* AddGameObject(GameObject* parent = nullptr);
+	void RemoveGameObject(GameObject* go = nullptr);
 
 public:
 	GameObject* root;

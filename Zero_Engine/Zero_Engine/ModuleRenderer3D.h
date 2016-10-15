@@ -26,7 +26,7 @@ public:
 
 	void OnResize(int width, int height, float fovy);
 
-	void RenderMesh(Mesh mesh, float4x4 trans, Texture* tex);
+	void RenderMesh(Mesh* mesh, float4x4 trans, Texture* tex);
 
 public:
 

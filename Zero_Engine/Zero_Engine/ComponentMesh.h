@@ -14,13 +14,12 @@ public:
 
 	void Update();
 
-	void SetMesh(Mesh _mesh);
-	void SetMesh2(std::vector<Mesh> _mesh);
-	Mesh GetMesh();
+	void SetMesh(Mesh* _mesh);
+	Mesh* GetMesh();
 	void ShowEditor();
 
 private:
-	Mesh mesh;
+	Mesh* mesh;
 };
 
 #endif // __COMPONENT_MESH_H__

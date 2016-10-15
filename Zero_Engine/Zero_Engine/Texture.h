@@ -7,7 +7,8 @@ public:
 	Texture()
 	{}
 	~Texture()
-	{}
+	{
+	}
 	void SetID(uint _id)
 	{
 		id = _id;
