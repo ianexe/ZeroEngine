@@ -3,6 +3,13 @@
 *Zero Engine* is an engine created for the Game Engines subject in CITM's Videogame Design and Development degree.
 Made by **Ian Trueba López** (https://github.com/ianexe/).
 
+How to use Zero Engine:
+* ASDW: Move Camera
+* Mouse right-click: Rotate Camera
+* Mouse wheel: Zoom Camera
+* R: Move Camera Up
+* F: Move Camera Down
+
 These libraries have been used during the development of *Zero Engine*:
 * SDL (https://www.libsdl.org/)
 * MathGeoLib (https://github.com/juj/MathGeoLib)
