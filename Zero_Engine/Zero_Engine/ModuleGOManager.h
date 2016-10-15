@@ -15,15 +15,18 @@ public:
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
-	void Render(GameObject* go);
 	bool CleanUp();
+
+	void Render();
+	void RenderChild(GameObject* go);
 
 	GameObject* AddGameObject(GameObject* parent = nullptr);
 	void RemoveGameObject(GameObject* go = nullptr);
 
-public:
+	void ShowEditor();
+
+private:
 	GameObject* root;
-	GameObject* selected = nullptr;
 };
 
 #endif // __MODULE_GOMANAGER_H__

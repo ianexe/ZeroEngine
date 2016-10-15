@@ -111,19 +111,7 @@ void ModuleEditor::ShowAbout()
 
 void ModuleEditor::ShowHierarchy()
 {
-	ImGui::SetNextWindowPos({ 5,25 });
-	ImGui::Begin("GameObjects", &hierarchy, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
-
-	if (ImGui::CollapsingHeader(App->go->root->name.data()))
-	{
-		if (ImGui::IsItemClicked(0))
-		{
-			selected = App->go->root;
-		}
-		CreateHierarchyChild(App->go->root);
-	}
-
-	ImGui::End();
+	App->go->ShowEditor();
 }
 
 void ModuleEditor::CreateHierarchyChild(GameObject* go)

@@ -40,22 +40,19 @@ update_status ModuleGOManager::Update(float dt)
 
 update_status ModuleGOManager::PostUpdate(float dt)
 {
-	// Show Properties
-	//------------
-	if (selected != nullptr)
-	{
-		selected->ShowEditor();
-	}
-	//------------
-
 	return UPDATE_CONTINUE;
 }
 
-void ModuleGOManager::Render(GameObject* go)
+void ModuleGOManager::Render()
+{
+	RenderChild(root);
+}
+
+void ModuleGOManager::RenderChild(GameObject* go)
 {
 	for (vector<GameObject*>::iterator item = go->children.begin(); item != go->children.end(); ++item)
 	{
-		Render(*item);
+		RenderChild(*item);
 		if ((*item)->enabled)
 		{
 			ComponentTransform* _trans = (ComponentTransform*)(*item)->FindComponent(COMP_TRANSFORM);
@@ -111,4 +108,17 @@ void ModuleGOManager::RemoveGameObject(GameObject* go)
 		go->parent->RemoveChild(go);
 	}
 	RELEASE(go);
+}
+
+void ModuleGOManager::ShowEditor()
+{
+	ImGui::SetNextWindowPos({ 5,25 });
+	ImGui::Begin("GameObjects", &App->editor->hierarchy, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
+
+	if (ImGui::CollapsingHeader(root->name.data()))
+	{
+		App->editor->CreateHierarchyChild(root);
+	}
+
+	ImGui::End();
 }
