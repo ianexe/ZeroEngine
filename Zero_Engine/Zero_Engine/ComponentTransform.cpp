@@ -9,6 +9,7 @@ ComponentTransform::ComponentTransform(GameObject* _go) : Component(_go)
 	pos = float3::zero;
 	scale = float3::one;
 	rotation = Quat::identity;
+	euler_rot = rotation.ToEulerXYZ();
 	local_trans = float4x4::FromTRS(pos, rotation, scale);
 }
 
@@ -19,6 +20,9 @@ ComponentTransform::ComponentTransform(GameObject* _go, float3 _pos, float3 _sca
 	pos = _pos;
 	scale = _scale;
 	rotation = _rot;
+	euler_rot = rotation.ToEulerXYZ();
+	euler_rot *= 360;
+	euler_rot /= 2 * pi;
 	local_trans = float4x4::FromTRS(pos, rotation, scale);
 }
 
@@ -48,6 +52,19 @@ float3 ComponentTransform::SetScale(float3 _scale)
 Quat ComponentTransform::SetRotation(Quat _rot)
 {
 	rotation = _rot;
+	euler_rot = rotation.ToEulerXYZ();
+	euler_rot *= 360;
+	euler_rot /= 2 * pi;
+	local_trans = float4x4::FromTRS(pos, rotation, scale);
+	return rotation;
+}
+
+Quat ComponentTransform::SetRotationEuler(float3 euler)
+{
+	float3 _euler = euler;
+	_euler *= 2 * pi;
+	_euler /= 360;
+	rotation = rotation.FromEulerXYZ(_euler.x, _euler.y, _euler.z);
 	local_trans = float4x4::FromTRS(pos, rotation, scale);
 	return rotation;
 }
@@ -67,8 +84,7 @@ float4x4 ComponentTransform::GetDrawingMatrix()
 
 void ComponentTransform::ShowEditor()
 {
-	ImGui::Begin("Transform");
-
+	ImGui::Text("Transformation");
 	ImGui::PushItemWidth(200);
 	if (ImGui::DragFloat3("Position", pos.ptr(), 0.2f))
 	{
@@ -79,7 +95,11 @@ void ComponentTransform::ShowEditor()
 	{
 		SetScale(scale);
 	}
-	ImGui::PopItemWidth();
 
-	ImGui::End();
+	if (ImGui::DragFloat3("Rotation", euler_rot.ptr(), 0.5f, -180.0f, 180.0f))
+	{
+		SetRotationEuler(euler_rot);
+	}
+	ImGui::PopItemWidth();
+	ImGui::Separator();
 }

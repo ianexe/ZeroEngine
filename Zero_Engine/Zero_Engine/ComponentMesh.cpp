@@ -35,7 +35,7 @@ Mesh* ComponentMesh::GetMesh()
 
 void ComponentMesh::ShowEditor()
 {
-	ImGui::Begin("Mesh");
-	ImGui::End();
+	ImGui::Text("Mesh");
+	ImGui::Separator();
 }
 

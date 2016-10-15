@@ -35,6 +35,6 @@ Texture* ComponentMaterial::GetTexture()
 
 void ComponentMaterial::ShowEditor()
 {
-	ImGui::Begin("Material");
-	ImGui::End();
+	ImGui::Text("Material");
+	ImGui::Separator();
 }

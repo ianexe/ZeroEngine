@@ -22,12 +22,15 @@ public:
 	void ShowHierarchy();
 	void CreateHierarchyChild(GameObject* go);
 
+	void ShowProperties();
+
 public:
 	bool demo = false;
 	bool about = false;
 	bool hierarchy = true;
+	bool properties = true;
 
-	GameObject* selected;
+	GameObject* selected = nullptr;
 };
 
 #endif // __MODULE_EDITOR_H__
