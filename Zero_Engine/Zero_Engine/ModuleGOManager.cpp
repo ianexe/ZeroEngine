@@ -18,6 +18,7 @@ ModuleGOManager::~ModuleGOManager()
 
 bool ModuleGOManager::Start()
 {
+	LOG("Initializing GameObject Manager");
 	bool ret = true;
 
 	root = new GameObject();
@@ -74,6 +75,7 @@ void ModuleGOManager::RenderChild(GameObject* go)
 
 bool ModuleGOManager::CleanUp()
 {
+	LOG("Cleaning GameObject Manager");
 	bool ret = true;
 
 	RemoveGameObject(root);

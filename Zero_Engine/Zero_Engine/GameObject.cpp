@@ -22,7 +22,8 @@ GameObject::~GameObject()
 {
 	for (vector<Component*>::iterator item = components.begin(); item != components.end(); ++item)
 	{
-		RELEASE(*item);
+		delete(*item);
+		(*item) = nullptr;
 	}
 	components.clear();
 	children.clear();
