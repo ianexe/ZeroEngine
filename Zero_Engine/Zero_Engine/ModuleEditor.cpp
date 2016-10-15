@@ -174,6 +174,7 @@ void ModuleEditor::ShowProperties()
 	{
 		ImGui::SameLine();
 		ImGui::Text(selected->name.data());
+		ImGui::Separator();
 		selected->ShowEditor();
 	}
 

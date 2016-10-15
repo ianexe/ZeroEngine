@@ -3,6 +3,8 @@
 #include "PhysBody3D.h"
 #include "ModuleCamera3D.h"
 
+#include "Imgui\imgui.h"
+
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -63,13 +65,16 @@ update_status ModuleCamera3D::Update(float dt)
 	//Wheel Movement
 	//----------------------------
 
-	if (App->input->GetMouseZ() > 0)
+	if (ImGui::IsMouseHoveringAnyWindow() == false)
 	{
-		newPos -= Z * speed * 50;
-	}
-	else if (App->input->GetMouseZ() < 0)
-	{
-		newPos += Z * speed * 50;
+		if (App->input->GetMouseZ() > 0)
+		{
+			newPos -= Z * speed * 50;
+		}
+		else if (App->input->GetMouseZ() < 0)
+		{
+			newPos += Z * speed * 50;
+		}
 	}
 
 	//----------------------------

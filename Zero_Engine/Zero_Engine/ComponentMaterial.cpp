@@ -36,5 +36,9 @@ Texture* ComponentMaterial::GetTexture()
 void ComponentMaterial::ShowEditor()
 {
 	ImGui::Text("Material");
+	ImGui::Checkbox("MaterialActive", &enabled);
+	ImGui::Image((ImTextureID)tex->id, ImVec2(250, 250));
+	ImGui::BulletText("Width: %i", tex->width);
+	ImGui::BulletText("Height: %i", tex->height);
 	ImGui::Separator();
 }

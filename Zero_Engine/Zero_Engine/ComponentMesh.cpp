@@ -36,6 +36,11 @@ Mesh* ComponentMesh::GetMesh()
 void ComponentMesh::ShowEditor()
 {
 	ImGui::Text("Mesh");
+	ImGui::Checkbox("MeshActive", &enabled);
+	ImGui::BulletText("Indices Num: %i", mesh->num_indices);
+	ImGui::BulletText("Vertices Num: %i", mesh->num_vertices);
+	ImGui::BulletText("Normals Num: %i", mesh->num_normals);
+	ImGui::BulletText("UVs Num: %i", mesh->num_uvs);
 	ImGui::Separator();
 }
 

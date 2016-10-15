@@ -62,10 +62,10 @@ void ModuleGOManager::Render(GameObject* go)
 			ComponentMesh* _mesh = (ComponentMesh*)(*item)->FindComponent(COMP_MESH);
 			ComponentMaterial* _material = (ComponentMaterial*)(*item)->FindComponent(COMP_MATERIAL);
 
-			if (_mesh != nullptr)
+			if (_mesh != nullptr && _mesh->enabled)
 			{
 				Mesh* item_mesh = _mesh->GetMesh();
-				if (_material != nullptr)
+				if (_material != nullptr && _material->enabled)
 					App->renderer3D->RenderMesh(item_mesh, _trans->GetDrawingMatrix(),_material->GetTexture());
 
 				else
