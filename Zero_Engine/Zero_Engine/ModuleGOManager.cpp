@@ -40,31 +40,13 @@ update_status ModuleGOManager::Update(float dt)
 
 update_status ModuleGOManager::PostUpdate(float dt)
 {
-	//Render
+	// Show Properties
 	//------------
-	Render(root);
-	//------------
-
-	//ShowEditor
-	//------------
-	ImGui::Begin("GameObjects");
-
-		if (ImGui::CollapsingHeader(root->name.data()))
-		{
-			CreateUI(root);
-			if (ImGui::IsItemClicked(0))
-			{
-				selected = root;
-			}
-		}
-	
-	ImGui::End();
-	//------------
-
 	if (selected != nullptr)
 	{
 		selected->ShowEditor();
 	}
+	//------------
 
 	return UPDATE_CONTINUE;
 }
@@ -89,24 +71,6 @@ void ModuleGOManager::Render(GameObject* go)
 				else
 					App->renderer3D->RenderMesh(item_mesh, _trans->GetDrawingMatrix(), nullptr);
 			}
-		}
-	}
-}
-
-void ModuleGOManager::CreateUI(GameObject* go)
-{
-	bool selected_flag = false;
-	for (vector<GameObject*>::iterator item = go->children.begin(); item != go->children.end(); ++item)
-	{
-		if (ImGui::TreeNodeEx((*item)->name.data()))
-		{
-			if (ImGui::IsItemClicked(0) && selected_flag == false)
-			{
-				selected = (*item);
-				selected_flag = true;
-			}
-			CreateUI(*item);
-			ImGui::TreePop();
 		}
 	}
 }

@@ -109,6 +109,14 @@ update_status ModuleEditor::Update(float dt)
 			ImGui::EndMenu();
 		}
 
+		if (ImGui::BeginMenu("View"))
+		{
+			if (ImGui::MenuItem("Hierarchy"))
+				hierarchy = !hierarchy;
+
+			ImGui::EndMenu();
+		}
+
 		if (ImGui::BeginMenu("Help"))
 		{
 			if (ImGui::MenuItem("Gui Demo"))
@@ -134,6 +142,9 @@ update_status ModuleEditor::Update(float dt)
 	if (about)
 		ShowAbout();
 
+	//Show Hierarchy Window
+	if (hierarchy)
+		ShowHierarchy();
 
 	return UPDATE_CONTINUE;
 }
@@ -155,5 +166,62 @@ void ModuleEditor::ShowAbout()
 	ImGui::BulletText("Bullet");
 	ImGui::BulletText("MatGeoLib");
 	ImGui::BulletText("ImGui");
+	ImGui::BulletText("PhysFS");
+	ImGui::BulletText("Assimp");
+	ImGui::BulletText("DevIL");
 	ImGui::End();
+}
+
+void ModuleEditor::ShowHierarchy()
+{
+	ImGui::Begin("GameObjects", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
+
+	if (ImGui::CollapsingHeader(App->go->root->name.data()))
+	{
+		CreateHierarchyChild(App->go->root);
+		if (ImGui::IsItemClicked(0))
+		{
+			selected = App->go->root;
+		}
+	}
+
+	ImGui::End();
+}
+
+void ModuleEditor::CreateHierarchyChild(GameObject* go)
+{
+	for (vector<GameObject*>::iterator item = go->children.begin(); item != go->children.end(); ++item)
+	{
+		int flags = 0;
+		if ((*item)->children.size() > 0)
+		{
+			if (selected == (*item))
+				flags = ImGuiTreeNodeFlags_Selected;
+
+			if (ImGui::TreeNodeEx((*item)->name.data(), flags))
+			{
+				if (ImGui::IsItemClicked(0))
+				{
+					selected = (*item);
+				}
+				CreateHierarchyChild(*item);
+				ImGui::TreePop();
+			}
+		}
+
+		else
+		{
+			if (selected == (*item))
+				flags = ImGuiTreeNodeFlags_Selected;
+
+			if (ImGui::TreeNodeEx((*item)->name.data(), ImGuiTreeNodeFlags_Leaf | flags))
+			{
+				if (ImGui::IsItemClicked(0))
+				{
+					selected = (*item);
+				}
+				ImGui::TreePop();
+			}
+		}
+	}
 }

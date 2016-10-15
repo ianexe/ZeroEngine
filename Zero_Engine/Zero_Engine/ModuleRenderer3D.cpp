@@ -135,6 +135,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	App->scene_intro->Render();
+	App->go->Render(App->go->root);
 	App->editor->Render();
 	SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;

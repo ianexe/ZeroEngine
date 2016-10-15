@@ -57,6 +57,9 @@ void ModuleSceneIntro::Render()
 	Plane3D(0, 1, 0, 0).Render();
 }
 
+
+//OPENGL Cubes
+//--------------------------------------------------
 void ModuleSceneIntro::DirectModeCube()
 {
 	//Cube
@@ -188,3 +191,4 @@ void ModuleSceneIntro::InitCubeIndices()
 	glBindBuffer(GL_ARRAY_BUFFER, my_id);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 36 * 3, g_vertex_buffer_data, GL_STATIC_DRAW);
 }
+//--------------------------------------------------
